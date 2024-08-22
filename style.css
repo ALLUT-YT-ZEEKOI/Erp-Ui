@@ -2,15 +2,17 @@ body {
     font-family: "Poppins", sans-serif;
     margin: 0;
     padding: 0;
-   
+
 }
 
 .main-sidebar {
-    position: fixed; /* Keeps the sidebar fixed on the left */
+    position: fixed;
+    /* Keeps the sidebar fixed on the left */
     top: 0;
     left: 0;
     padding-top: 50px;
-    height: 100vh; /* Full height of the viewport */
+    height: 100vh;
+    /* Full height of the viewport */
     width: 230px;
     background: #1E1E1E;
     z-index: 810;
@@ -18,58 +20,98 @@ body {
 }
 
 .main-header {
-   
+
     padding: 10px;
     background: #F1F1F1;
-  
+
     height: 50px;
     display: flex;
     align-items: center;
 
-   
-}
-.main-conatiner{
-    margin-left: 230px; /* This ensures the content is next to the sidebar */
-      width: calc(100% - 230px); /* Full width minus the width of the sidebar */
+
 }
 
-.add-sale{
-    color: #0C3959; font-size: 20px; font-family: Poppins; font-weight: 500; word-wrap: break-word;
+.main-conatiner {
+    margin-left: 230px;
+    /* This ensures the content is next to the sidebar */
+    width: calc(100% - 230px);
+    /* Full width minus the width of the sidebar */
+}
+
+.add-sale {
+    color: #0C3959;
+    font-size: 20px;
+    font-family: Poppins;
+    font-weight: 500;
+    word-wrap: break-word;
     margin-left: 20px;
 }
-.location-container{
-    width: 205px; height: 25.39px;
-     background: white;
-      border-radius: 85.02px;
-      border: 0.73px #0C3959 solid;
+
+.location-container {
+    width: 205px;
+    /* padding: 3px; */
+    /* height: 25.39px; */
+    background: white;
+    border-radius: 85.02px;
+    border: 0.73px #0C3959 solid;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-left: 40px;
-  
 }
-.all-location{
-    color: black; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;
+
+.all-location {
+    color: black;
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: 500;
+    word-wrap: break-word;
     padding-right: 58px
 }
-.all-location_1{
-    color: black; font-size: 12px; font-family: Poppins; font-weight: 500; word-wrap: break-word;
+
+.all-location_1 {
+    color: black;
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: 500;
+    word-wrap: break-word;
     padding-right: 20px
 }
-.blue-container{
-    width: 36.27px; height: 25.39px; background: #0C3959; border-radius: 85.02px;display: flex;align-items: center;justify-content: center;
+
+.blue-container {
+    width: 37.27px;
+    margin: 0;
+    padding: 6px;
+    /* height: 25.39px; */
+    background: #0C3959;
+    border-radius: 141.02px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
 }
-.saveas-btn{
-   background: white; border-radius: 6px; border: 1px #C9C9C9 solid
-     ;padding: 8px;
+
+.saveas-btn {
+    background: white;
+    border-radius: 6px;
+    border: 1px #C9C9C9 solid;
+    padding: 8px;
+    margin-left: 10%;
 }
-.saveas-btn-text{
-    font-size: 12px; font-family: Poppins; font-weight: 600; word-wrap: break-word
+
+.saveas-btn-text {
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: 600;
+    word-wrap: break-word
 }
+
 /* customer details */
 
-.customer-details-main-container{
-    height: 170px; background: #DBF0FF; border-radius: 9px;
+.customer-details-main-container {
+    /* height: 170px; */
+    background: #DBF0FF;
+    border-radius: 9px;
     padding: 20px;
 }
 
@@ -81,17 +123,22 @@ body {
 }
 
 #searchBox {
-   width: 100%;
-    padding-left: 33px; /* Space for the search icon */
-    padding-right: 30px; /* Space for the dropdown arrow */
+    width: 100%;
+    padding-left: 33px;
+    /* Space for the search icon */
+    padding-right: 30px;
+    /* Space for the dropdown arrow */
     padding-top: 8px;
     padding-bottom: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: border-color 0.3s;
     /* padding: 8px; */
-    color: #646464; font-size: .7rem; font-family: Poppins; font-weight: 400; word-wrap: break-word
-
+    color: #646464;
+    font-size: .7rem;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word
 }
 
 #searchBox:hover,
@@ -106,7 +153,7 @@ body {
     background-color: #e7f3ed;
     min-width: 100%;
     border: 1px solid #ccc;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 5px;
     margin-top: 2px;
@@ -114,9 +161,11 @@ body {
     max-height: 0;
     transition: max-height 0.5s ease-in-out;
 }
+
 .dropdown-content.show {
     display: block;
-    max-height: 200px; /* Adjust based on content */
+    max-height: 200px;
+    /* Adjust based on content */
 }
 
 .dropdown-content a {
@@ -160,16 +209,17 @@ body {
 
 #searchBox_1 {
     width: 100%;
-    padding-left: 10px; /* Space for the search icon */
-    padding-right: 30px; /* Space for the dropdown arrow */
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 7px;
+    background: white;
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: border-color 0.3s;
     /* padding: 8px; */
-    color: #646464; font-size: .7rem; font-family: Poppins; font-weight: 400; word-wrap: break-word
-
+    color: #646464;
+    font-size: .7rem;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
 }
 
 #searchBox_1:hover,
@@ -184,7 +234,7 @@ body {
     background-color: #e7f3ed;
     min-width: 100%;
     border: 1px solid #ccc;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
     border-radius: 5px;
     margin-top: 2px;
@@ -192,9 +242,11 @@ body {
     max-height: 0;
     transition: max-height 0.5s ease-in-out;
 }
+
 .dropdown-content_1.show {
     display: block;
-    max-height: 200px; /* Adjust based on content */
+    max-height: 200px;
+    /* Adjust based on content */
 }
 
 .dropdown-content_1 a {
@@ -220,25 +272,121 @@ body {
 
 .dropdown-arrow_1 {
     position: absolute;
-    right:80px;
+    right: 80px;
     top: 50%;
     transform: translateY(-50%);
     font-size: 14px;
     color: #0c395956;
     pointer-events: none;
     border-left: 2px solid black;
-    height: 10px; /* Adjust the height as needed */
-    
+    height: 10px;
+    /* Adjust the height as needed */
+
 }
+
 .dropdown-arrow_1_1 {
     position: absolute;
-    right:5px;
+    right: 5px;
     top: 50%;
     transform: translateY(-50%);
 
     color: #0c395956;
-    color: #646464; font-size: .8rem; font-family: Poppins; font-weight: 400; word-wrap: break-word
- 
+    color: #646464;
+    font-size: .8rem;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word
+}
 
-    
+.vertical-line {
+    border-left: 1px solid rgba(0, 0, 0, 0.411);
+    height: 18px;
+    margin-left: 35px;
+    /* padding-left: 0px; */
+    padding-right: 8px;
+}
+
+.subhead-text {
+    color: #0C3959;
+    font-size: .9rem;
+    font-family: Poppins;
+    font-weight: 600;
+    word-wrap: break-word
+}
+
+
+textarea {
+    width: 100%;
+    height: 57px;
+    background: white;
+    border-radius: 3.11px;
+    border: none;
+    /* Remove the default border */
+    resize: none;
+    /* Prevent resizing if needed */
+    padding: 8px;
+    /* Add some padding for text */
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect the width/height */
+}
+
+.searchBox-address {
+    width: 95%;
+    height: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    padding: 0;
+    color: #646464;
+    font-size: 0.7rem;
+    font-family: Poppins, sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    margin-top: 10px;
+    text-align: left;
+    /* Ensure text is aligned to the left */
+    resize: none;
+    /* Prevent the textarea from being resizable (optional) */
+}
+
+.searchBox-address:hover,
+.searchBox-address:focus {
+    border-color: blue;
+    outline: none;
+}
+
+/* media querys */
+@media screen and (max-height: 1400px) {
+    .vertical-line {
+        border-left: 1px solid rgba(0, 0, 0, 0.411);
+        height: 18px;
+        margin-left: 20px;
+        /* padding-left: 0px; */
+        padding-right: 8px;
+    }
+
+    .searchBox-address {
+        width: 95%;
+        height: 80px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        transition: border-color 0.3s;
+        padding: 0;
+        color: #646464;
+        font-size: 0.7rem;
+        font-family: Poppins, sans-serif;
+        font-weight: 400;
+        word-wrap: break-word;
+        margin-top: 10px;
+        text-align: left;
+        /* Ensure text is aligned to the left */
+        resize: none;
+        /* Prevent the textarea from being resizable (optional) */
+    }
+
+    .searchBox-address:hover,
+    .searchBox-address:focus {
+        border-color: blue;
+        outline: none;
+    }
 }
