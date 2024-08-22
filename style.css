@@ -449,6 +449,10 @@ textarea {
     word-wrap: break-word;
 }
 
+.ctm-input {
+    width: 100%;
+}
+
 
 
 
