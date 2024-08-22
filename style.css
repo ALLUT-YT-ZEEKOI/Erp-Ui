@@ -115,6 +115,70 @@ body {
     padding: 20px;
 }
 
+.customer-details-main-container_2 {
+    height: 100px;
+    background: #DBF0FF;
+    border-radius: 9px;
+    overflow: hidden;
+    /* display: block; */
+    max-height: 0px;
+    margin-top: 12px;
+    transition: max-height 0.5s ease-out;
+    /* padding: 20px; */
+}
+
+.customer-details-main-container_2.show {
+    max-height: 500px;
+
+}
+
+.button-container {
+    position: relative;
+    display: inline-block;
+}
+
+.test-company {
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    background: #0C3959;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+}
+
+.dialog-box {
+    display: none;
+    position: absolute;
+    bottom: -23px;
+    left: 133px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    width: max-content;
+    z-index: 20;
+}
+
+.button-container:hover .dialog-box,
+.dialog-box:hover {
+    display: block;
+}
+
+.sub_sub_address {
+    font-size: 12px;
+    color: gray;
+    padding-top: 10px;
+}
+
+.sub-txt {
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+
+    font-weight: 700;
+}
 
 /* searchboxwithdropdownicon */
 .search-container {
@@ -168,15 +232,15 @@ body {
     /* Adjust based on content */
 }
 
-.dropdown-content a {
+.dropdown-content .drop_one {
     color: black;
     padding: 8px 16px;
     text-decoration: none;
     display: block;
 }
 
-.dropdown-content a:hover {
-    background-color: #f1f1f1;
+.dropdown-content .drop_one:hover {
+    background-color: #dbcdcd96;
 }
 
 .search-icon {
@@ -199,6 +263,17 @@ body {
     pointer-events: none;
 }
 
+.text-customer-p {
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 0;
+    margin-top: 8px;
+}
+
+.text-customer-p-p {
+    font-size: 12px;
+    line-height: 0;
+}
 
 
 /* searchboxwithdropdownicon */
@@ -355,6 +430,219 @@ textarea {
     outline: none;
 }
 
+
+/* Invoice Details............... */
+.invoice-container {
+    width: 100%;
+    /* height: 70px; */
+    background: #F1F1F1;
+    border-radius: 9px;
+    padding: 20px;
+}
+
+.subtext_1 {
+    width: 100%;
+    color: #646464;
+    font-size: 13px;
+    font-family: Poppins;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+
+
+
+#searchBox_invoice {
+    width: 95%;
+    padding-left: 12px;
+    /* padding-right: 30px; */
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+    /* padding: 8px; */
+    color: #646464;
+    font-size: .7rem;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+#searchBox_invoice:hover,
+#searchBox_invoice:focus {
+    border-color: blue;
+    outline: none;
+}
+
+
+/* Box DropDown */
+
+.custom-search-container {
+    position: relative;
+    width: 95%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 33px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.custom-search-container:hover,
+.custom-search-container:focus {
+    border-color: blue;
+    outline: none;
+}
+
+.custom-search-container span {
+    flex: 1;
+    /* Take up available space */
+}
+
+.custom-dropdown-content {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Position it directly below the container */
+    left: 0;
+    background-color: white;
+    width: 100%;
+    border: none;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 2px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.custom-dropdown-content.show {
+    display: block;
+    max-height: 200px;
+    /* Adjust based on content */
+}
+
+.custom-dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.custom-dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-dropdown-arrow {
+    font-size: 10px;
+    color: #030303;
+    pointer-events: none;
+    margin: 0px 0px 0px 10px;
+}
+
+.customer_select {
+    color: #646464;
+    font-size: .7rem;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.custom-dropdown-arrow.up {
+    transform: rotate(-180deg);
+    /* Rotate the icon when the dropdown is open */
+}
+
+/* Box DropDown */
+/* Box DropDown _ 4 */
+
+.custom-search-container_4 {
+    position: relative;
+    width: 100%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 33px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.custom-search-container_4 :hover,
+.custom-search-container_4 :focus {
+    border-color: blue;
+    outline: none;
+}
+
+.custom-search-container_4 span {
+    flex: 1;
+    /* Take up available space */
+}
+
+.custom-dropdown-content_4 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Position it directly below the container */
+    left: 0;
+    background-color: white;
+    width: 100%;
+    border: none;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 2px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.custom-dropdown-content_4.show {
+    display: block;
+    max-height: 200px;
+    /* Adjust based on content */
+}
+
+.custom-dropdown-content_4 a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.custom-dropdown-content_4 a:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-dropdown-arrow_4 {
+    font-size: 10px;
+    color: #030303;
+    pointer-events: none;
+    margin: 0px 0px 0px 10px;
+}
+
+.customer_select_4 {
+    color: #646464;
+    font-size: .7rem;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.custom-dropdown-arrow_4.up {
+    transform: rotate(-180deg);
+    /* Rotate the icon when the dropdown is open */
+}
+
+/* Box DropDown */
+
 /* media querys */
 @media screen and (max-height: 1400px) {
     .vertical-line {
@@ -367,7 +655,8 @@ textarea {
 
     .searchBox-address {
         width: 95%;
-        height: 80px;
+        height: 100px;
+        padding-left: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
         transition: border-color 0.3s;

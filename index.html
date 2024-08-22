@@ -61,6 +61,11 @@
         <div class="container-fluid" style="padding: 30px;">
             <div class="row">
                 <div class="col col-6">
+                    <div class="subhead-text">Invoice Details</div>
+
+
+
+
                     <div class="customer-details-main-container">
                         <div style="display: flex;justify-content: space-between; width: 100%;">
                             <!-- customer details -->
@@ -71,12 +76,15 @@
                                 <div class="search-container">
 
                                     <i class="search-icon bi bi-search"></i>
-                                    <input type="text" id="searchBox" placeholder="Select or Add a Customer" /
+                                    <input type="text" id="searchBox" placeholder="Select or Add a Customer"
                                         class="search-box">
                                     <i class="dropdown-arrow bi bi-arrow-down"></i>
                                     <div id="dropdownMenu" class="dropdown-content">
-                                        <a href="#">Drop One</a>
-                                        <a href="#">Drop Two</a>
+                                        <div onclick="show_address_details();" class="drop_one">
+                                            <p class="text-customer-p">TestCustomer (9946051204)</p>
+                                            <p class="text-customer-p-p">TEST1234 Test Company</p>
+                                        </div>
+                                        <div class="drop_one">Drop One</div>
                                     </div>
                                 </div>
 
@@ -116,30 +124,145 @@
 
                             </div>
                         </div>
-                        <div style="width: 60%;display: flex; margin-top: 25px;">
-                            <div style="width: 60%;">
+
+                    </div>
 
 
-                                <div class="subhead-text">Billing Address</div>
-                                <textarea class="searchBox-address" placeholder=""></textarea>
+                    <!-- showing details -->
+                    <div id="customer-details-main-container_2" class="customer-details-main-container_2">
 
 
 
+                        <div style="margin: 20px;">
+
+                            <div class="button-container">
+                                <button class="test-company">
+                                    Test Company <i class="bi bi-x"></i>
+                                </button>
+                                <div class="dialog-box">
+                                    <p>Amz Address p. o <i class="bi bi-pencil-square"></i> </p>
+                                </div>
                             </div>
-                            <div style="width: 60%;">
 
-
-                                <div class="subhead-text">Shipping Address</div>
-                                <textarea class="searchBox-address" placeholder=""></textarea>
-
-
-
-                            </div>
+                            <p class="sub_sub_address">Shipping Address : <span class="sub-txt"> Valiya Vilakom
+                                    Perumguzhi P. o </span>
+                            </p>
                         </div>
                     </div>
                 </div>
+
+
+                <!-- popup show box container -->
+
+
+
+
+
+
                 <div class="col col-6">
-                    s
+                    <div class="subhead-text">Invoice Details</div>
+
+
+
+                    <div class="invoice-container">
+                        <div style="display: flex;justify-content: space-between;align-items: center;">
+                            <div class="subtext_1">
+                                Invoice No
+
+                                <input type="text" id="searchBox_invoice" placeholder="Select or Add a Customer" /
+                                    class="search-box">
+                            </div>
+                            <div class="subtext_1">
+                                Invoice Template
+
+
+
+                                <div class="custom-search-container">
+                                    <span class="customer_select">Select or Add a Customer</span>
+                                    <i id="customDropdownArrow" class="custom-dropdown-arrow bi bi-arrow-down"></i>
+
+                                    <div id="customDropdownMenu" class="custom-dropdown-content">
+                                        <a href="#">Customer One</a>
+                                        <a href="#">Customer Two</a>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- <input type="text" id="searchBox_invoice" placeholder="Select or Add a Customer" /
+                                    class="search-box"> -->
+                            </div>
+                            <div class="subtext_1">
+                                Invoice Scheme
+
+                                <div class="custom-search-container_4">
+                                    <span class="customer_select_4">Select or Add a Customer</span>
+                                    <i id="customDropdownArrow_4" class="custom-dropdown-arrow_4 bi bi-arrow-down"></i>
+
+                                    <div id="customDropdownMenu_4" class="custom-dropdown-content_4">
+                                        <a href="#">Customer One</a>
+                                        <a href="#">Customer Two</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- sales invoce date -->
+
+
+                    <div class="invoice-container" style="margin-top: 15px;">
+                        <div style="display: flex;justify-content: space-between;align-items: center;">
+                            <div class="subtext_1">
+                                Sale Date
+
+                                <input type="text" id="searchBox_invoice" placeholder="Select or Add a Customer" /
+                                    class="search-box">
+                            </div>
+                            <div class="subtext_1">
+                                Delivery Date
+
+
+
+                                <div class="custom-search-container">
+                                    <span class="customer_select">Select or Add a Customer</span>
+                                    <i id="customDropdownArrow" class="custom-dropdown-arrow bi bi-arrow-down"></i>
+
+                                    <div id="customDropdownMenu" class="custom-dropdown-content">
+                                        <a href="#">Customer One</a>
+                                        <a href="#">Customer Two</a>
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <!-- <input type="text" id="searchBox_invoice" placeholder="Select or Add a Customer" /
+                                    class="search-box"> -->
+                            </div>
+                            <div class="subtext_1">
+                                Extended Delivery Date
+
+                                <div class="custom-search-container_4">
+                                    <span class="customer_select_4">Select or Add a Customer</span>
+                                    <i id="customDropdownArrow_4" class="custom-dropdown-arrow_4 bi bi-arrow-down"></i>
+
+                                    <div id="customDropdownMenu_4" class="custom-dropdown-content_4">
+                                        <a href="#">Customer One</a>
+                                        <a href="#">Customer Two</a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,33 +12,34 @@
             font-family: Arial, sans-serif;
         }
 
-        .search-container {
+        .search-container_2 {
             position: relative;
-            width: 300px;
         }
 
-        #searchBox {
+        #searchBox_2 {
             width: 100%;
-            padding-left: 40px; /* Space for the search icon */
-            padding-right: 30px; /* Space for the dropdown arrow */
+            padding-left: 40px;
+            /* Space for the search icon */
+            padding-right: 30px;
+            /* Space for the dropdown arrow */
             border: 2px solid #ccc;
             border-radius: 5px;
             transition: border-color 0.3s;
         }
 
-        #searchBox:hover,
-        #searchBox:focus {
+        #searchBox_2:hover,
+        #searchBox_2:focus {
             border-color: blue;
             outline: none;
         }
 
-        .dropdown-content {
+        .dropdown-content_2 {
             display: none;
             position: absolute;
             background-color: white;
             min-width: 100%;
             border: 1px solid #ccc;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
             border-radius: 5px;
             margin-top: 2px;
@@ -46,23 +48,24 @@
             transition: max-height 0.5s ease-in-out;
         }
 
-        .dropdown-content.show {
+        .dropdown-content_2.show {
             display: block;
-            max-height: 200px; /* Adjust based on content */
+            max-height: 200px;
+            /* Adjust based on content */
         }
 
-        .dropdown-content a {
+        .dropdown-content_2 a {
             color: black;
             padding: 8px 16px;
             text-decoration: none;
             display: block;
         }
 
-        .dropdown-content a:hover {
+        .dropdown-content_2 a:hover {
             background-color: #f1f1f1;
         }
 
-        .search-icon {
+        .search-icon_2 {
             position: absolute;
             left: 10px;
             top: 50%;
@@ -71,7 +74,7 @@
             color: #ccc;
         }
 
-        .dropdown-arrow {
+        .dropdown-arrow_2 {
             position: absolute;
             right: 10px;
             top: 50%;
@@ -82,12 +85,13 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="search-container">
-        <i class="search-icon fas fa-search"></i>
-        <input type="text" id="searchBox" placeholder="Select or Add a Customer" />
-        <i class="dropdown-arrow fas fa-chevron-down"></i>
-        <div id="dropdownMenu" class="dropdown-content">
+    <div class="search-container_2">
+        <i class="search-icon_2 fas fa-search"></i>
+        <input type="text" id="searchBox_2" placeholder="Select or Add a Customer" />
+        <i class="dropdown-arrow_2 fas fa-chevron-down"></i>
+        <div id="dropdownMenu_2" class="dropdown-content_2">
             <a href="#">Drop One</a>
             <a href="#">Drop Two</a>
         </div>
@@ -99,27 +103,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script>
-        document.getElementById('searchBox').addEventListener('click', function() {
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            if (dropdownMenu.classList.contains('show')) {
-                dropdownMenu.classList.remove('show');
-                setTimeout(() => dropdownMenu.style.display = 'none', 500); // Wait for animation to finish
+        document.getElementById('searchBox_2').addEventListener('click', function () {
+            const dropdownMenu_2 = document.getElementById('dropdownMenu_2');
+            if (dropdownMenu_2.classList.contains('show')) {
+                dropdownMenu_2.classList.remove('show');
+                setTimeout(() => dropdownMenu_2.style.display = 'none', 500); // Wait for animation to finish
             } else {
-                dropdownMenu.style.display = 'block';
-                setTimeout(() => dropdownMenu.classList.add('show'), 0); // Allow display to register before animation
+                dropdownMenu_2.style.display = 'block';
+                setTimeout(() => dropdownMenu_2.classList.add('show'), 0); // Allow display to register before animation
             }
         });
 
         // To hide the dropdown if clicked outside
-        document.addEventListener('click', function(event) {
-            const searchBox = document.getElementById('searchBox');
-            const dropdownMenu = document.getElementById('dropdownMenu');
-            
-            if (!searchBox.contains(event.target) && !dropdownMenu.contains(event.target)) {
-                dropdownMenu.classList.remove('show');
-                setTimeout(() => dropdownMenu.style.display = 'none', 500); // Wait for animation to finish
+        document.addEventListener('click', function (event) {
+            const searchBox_2 = document.getElementById('searchBox_2');
+            const dropdownMenu_2 = document.getElementById('dropdownMenu_2');
+
+            if (!searchBox_2.contains(event.target) && !dropdownMenu_2.contains(event.target)) {
+                dropdownMenu_2.classList.remove('show');
+                setTimeout(() => dropdownMenu_2.style.display = 'none', 500); // Wait for animation to finish
             }
+        });
+
+        // To close the dropdown when a menu item is clicked
+        document.querySelectorAll('#dropdownMenu_2 a').forEach(item => {
+            item.addEventListener('click', function () {
+                const dropdownMenu_2 = document.getElementById('dropdownMenu_2');
+                dropdownMenu_2.classList.remove('show');
+                setTimeout(() => dropdownMenu_2.style.display = 'none', 500); // Wait for animation to finish
+            });
         });
     </script>
 </body>
+
 </html>
