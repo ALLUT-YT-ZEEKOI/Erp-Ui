@@ -4,40 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Box with Dropdown</title>
+    <title>Dropdown Container</title>
     <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .search-container_2 {
+        .custom-select-container {
             position: relative;
-        }
-
-        #searchBox_2 {
-            width: 100%;
-            padding-left: 40px;
-            /* Space for the search icon */
-            padding-right: 30px;
-            /* Space for the dropdown arrow */
+            width: 300px;
+            /* Adjust width as needed */
+            padding: 10px;
             border: 2px solid #ccc;
             border-radius: 5px;
-            transition: border-color 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        #searchBox_2:hover,
-        #searchBox_2:focus {
+        .custom-select-container:hover,
+        .custom-select-container:focus {
             border-color: blue;
             outline: none;
         }
 
-        .dropdown-content_2 {
+        .custom-select-container span {
+            flex: 1;
+            /* Take up available space */
+        }
+
+        .custom-dropdown-list {
             display: none;
             position: absolute;
+            top: 100%;
+            /* Position it directly below the container */
+            left: 0;
             background-color: white;
-            min-width: 100%;
+            width: 100%;
             border: 1px solid #ccc;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
@@ -48,52 +52,39 @@
             transition: max-height 0.5s ease-in-out;
         }
 
-        .dropdown-content_2.show {
+        .custom-dropdown-list.show {
             display: block;
             max-height: 200px;
             /* Adjust based on content */
         }
 
-        .dropdown-content_2 a {
+        .custom-dropdown-list a {
             color: black;
             padding: 8px 16px;
             text-decoration: none;
             display: block;
         }
 
-        .dropdown-content_2 a:hover {
+        .custom-dropdown-list a:hover {
             background-color: #f1f1f1;
         }
 
-        .search-icon_2 {
-            position: absolute;
-            left: 10px;
-            top: 50%;
-            transform: translateY(-50%);
+        .custom-dropdown-icon {
             font-size: 18px;
-            color: #ccc;
-        }
-
-        .dropdown-arrow_2 {
-            position: absolute;
-            right: 10px;
-            top: 50%;
-            transform: translateY(-50%);
-            font-size: 18px;
-            color: #ccc;
+            color: #0c0c0c;
             pointer-events: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="search-container_2">
-        <i class="search-icon_2 fas fa-search"></i>
-        <input type="text" id="searchBox_2" placeholder="Select or Add a Customer" />
-        <i class="dropdown-arrow_2 fas fa-chevron-down"></i>
-        <div id="dropdownMenu_2" class="dropdown-content_2">
-            <a href="#">Drop One</a>
-            <a href="#">Drop Two</a>
+    <div class="custom-select-container">
+        <span>Choose or Add a Customer</span>
+        <i id="dropdownArrow" class="custom-dropdown-icon bi bi-arrow-down"></i>
+        <div id="dropdownMenuContent" class="custom-dropdown-list">
+            <a href="#">Customer A</a>
+            <a href="#">Customer B</a>
+            <a href="#">Customer C</a>
         </div>
     </div>
 
@@ -102,36 +93,36 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script>
-        document.getElementById('searchBox_2').addEventListener('click', function () {
-            const dropdownMenu_2 = document.getElementById('dropdownMenu_2');
-            if (dropdownMenu_2.classList.contains('show')) {
-                dropdownMenu_2.classList.remove('show');
-                setTimeout(() => dropdownMenu_2.style.display = 'none', 500); // Wait for animation to finish
+        document.querySelector('.custom-select-container').addEventListener('click', function () {
+            const dropdownMenuContent = document.getElementById('dropdownMenuContent');
+            const dropdownArrow = document.getElementById('dropdownArrow');
+
+            if (dropdownMenuContent.classList.contains('show')) {
+                dropdownMenuContent.classList.remove('show');
+                dropdownArrow.classList.replace('bi-arrow-up', 'bi-arrow-down'); // Change arrow back to down
+                setTimeout(() => dropdownMenuContent.style.display = 'none', 500); // Wait for animation to finish
             } else {
-                dropdownMenu_2.style.display = 'block';
-                setTimeout(() => dropdownMenu_2.classList.add('show'), 0); // Allow display to register before animation
+                dropdownMenuContent.style.display = 'block';
+                setTimeout(() => dropdownMenuContent.classList.add('show'), 0); // Allow display to register before animation
+                dropdownArrow.classList.replace('bi-arrow-down', 'bi-arrow-up'); // Change arrow to up
             }
         });
 
         // To hide the dropdown if clicked outside
         document.addEventListener('click', function (event) {
-            const searchBox_2 = document.getElementById('searchBox_2');
-            const dropdownMenu_2 = document.getElementById('dropdownMenu_2');
+            const selectContainer = document.querySelector('.custom-select-container');
+            const dropdownMenuContent = document.getElementById('dropdownMenuContent');
+            const dropdownArrow = document.getElementById('dropdownArrow');
 
-            if (!searchBox_2.contains(event.target) && !dropdownMenu_2.contains(event.target)) {
-                dropdownMenu_2.classList.remove('show');
-                setTimeout(() => dropdownMenu_2.style.display = 'none', 500); // Wait for animation to finish
+            if (!selectContainer.contains(event.target) && !dropdownMenuContent.contains(event.target)) {
+                dropdownMenuContent.classList.remove('show');
+                dropdownArrow.classList.replace('bi-arrow-up', 'bi-arrow-down'); // Change arrow back to down
+                setTimeout(() => dropdownMenuContent.style.display = 'none', 500); // Wait for animation to finish
             }
-        });
-
-        // To close the dropdown when a menu item is clicked
-        document.querySelectorAll('#dropdownMenu_2 a').forEach(item => {
-            item.addEventListener('click', function () {
-                const dropdownMenu_2 = document.getElementById('dropdownMenu_2');
-                dropdownMenu_2.classList.remove('show');
-                setTimeout(() => dropdownMenu_2.style.display = 'none', 500); // Wait for animation to finish
-            });
         });
     </script>
 </body>

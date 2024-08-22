@@ -126,3 +126,63 @@ function show_address_details() {
         }, { once: true });
     }
 }
+
+// other details
+//invoice 
+/* Box DropDown */
+document.querySelector('.custom-search-container_9').addEventListener('click', function () {
+    const dropdownMenu_3_9 = document.getElementById('customDropdownMenu_9');
+    const dropdownArrow_3_9 = document.getElementById('customDropdownArrow_9');
+
+    if (dropdownMenu_3_9.classList.contains('show')) {
+        dropdownMenu_3_9.classList.remove('show');
+        setTimeout(() => dropdownMenu_9.style.display = 'none', 500); // Wait for animation to finish
+        dropdownArrow_3_9.classList.remove('up'); // Change arrow to down position
+    } else {
+        dropdownMenu_3_9.style.display = 'block';
+        setTimeout(() => dropdownMenu_3_9.classList.add('show'), 0); // Allow display to register before animation
+        dropdownArrow_3_9.classList.add('up'); // Rotate arrow to up position
+    }
+});
+
+// To hide the dropdown if clicked outside
+document.addEventListener('click', function (event) {
+    const searchContainer_3_9 = document.querySelector('.custom-search-container_9');
+    const dropdownMenu_3_9 = document.getElementById('customDropdownMenu_9');
+
+    if (!searchContainer_3_9.contains(event.target) && !dropdownMenu._3_9contains(event.target)) {
+        dropdownMenu_3_9.classList.remove('show');
+        setTimeout(() => dropdownMenu_3._9style.display = 'none', 500); // Wait for animation to finish
+        document.getElementById('customDropdownArrow_9').classList.remove('up'); // Rotate arrow to down position
+    }
+});
+// Second dropdown
+// other details
+//invoice 
+/* Box DropDown */
+document.querySelector('.custom-search-container_8').addEventListener('click', function () {
+    const dropdownMenu_3_8 = document.getElementById('customDropdownMenu_8');
+    const dropdownArrow_3_8 = document.getElementById('customDropdownArrow_8');
+
+    if (dropdownMenu_3_8.classList.contains('show')) {
+        dropdownMenu_3_8.classList.remove('show');
+        setTimeout(() => dropdownMenu_8.style.display = 'none', 500); // Wait for animation to finish
+        dropdownArrow_3_8.classList.remove('up'); // Change arrow to down position
+    } else {
+        dropdownMenu_3_8.style.display = 'block';
+        setTimeout(() => dropdownMenu_3_8.classList.add('show'), 0); // Allow display to register before animation
+        dropdownArrow_3_8.classList.add('up'); // Rotate arrow to up position
+    }
+});
+
+// To hide the dropdown if clicked outside
+document.addEventListener('click', function (event) {
+    const searchContainer_3_8 = document.querySelector('.custom-search-container_8');
+    const dropdownMenu_3_8 = document.getElementById('customDropdownMenu_8');
+
+    if (!searchContainer_3_8.contains(event.target) && !dropdownMenu._3_8contains(event.target)) {
+        dropdownMenu_3_8.classList.remove('show');
+        setTimeout(() => dropdownMenu_3._8style.display = 'none', 500); // Wait for animation to finish
+        document.getElementById('customDropdownArrow_8').classList.remove('up'); // Rotate arrow to down position
+    }
+});
