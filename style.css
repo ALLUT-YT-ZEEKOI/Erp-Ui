@@ -447,6 +447,7 @@ textarea {
     font-family: Poppins;
     font-weight: 500;
     word-wrap: break-word;
+
 }
 
 .ctm-input {
@@ -467,7 +468,7 @@ textarea {
     transition: border-color 0.3s;
     /* padding: 8px; */
     color: #646464;
-    font-size: .7rem;
+    font-size: 9px;
     font-family: Poppins;
     font-weight: 400;
     word-wrap: break-word;
@@ -551,7 +552,7 @@ textarea {
 
 .customer_select {
     color: #646464;
-    font-size: .7rem;
+    font-size: 9px;
     font-family: Poppins;
     font-weight: 400;
     word-wrap: break-word;
@@ -636,7 +637,7 @@ textarea {
 
 .customer_select_9 {
     color: #646464;
-    font-size: .7rem;
+    font-size: 9px;
     font-family: Poppins;
     font-weight: 400;
     word-wrap: break-word;
@@ -721,7 +722,7 @@ textarea {
 
 .customer_select_8 {
     color: #646464;
-    font-size: .7rem;
+    font-size: 9px;
     font-family: Poppins;
     font-weight: 400;
     word-wrap: break-word;
@@ -733,8 +734,227 @@ textarea {
 }
 
 
+/* third container dropdown */
 
 
+/* Box dropdown other details */
+
+.custom-search-container_8_7 {
+    position: relative;
+    width: 95%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 33px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.custom-search-container_8_7:hover,
+.custom-search-container_8_7:focus {
+    border-color: blue;
+    outline: none;
+}
+
+.custom-search-container_8_7 span {
+    flex: 1;
+    /* Take up available space */
+}
+
+.custom-dropdown-content_8_7 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Position it directly below the container */
+    left: 0;
+    background-color: white;
+    width: 100%;
+    border: none;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 2px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.custom-dropdown-content_8_7.show {
+    display: block;
+    max-height: 200px;
+    /* Adjust based on content */
+}
+
+.custom-dropdown-content_8_7 a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.custom-dropdown-content_8_7 a:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-dropdown-arrow_8_7 {
+    font-size: 10px;
+    color: #030303;
+    pointer-events: none;
+    margin: 0px 0px 0px 10px;
+}
+
+.customer_select_8_7 {
+    color: #646464;
+    font-size: 9px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.custom-dropdown-arrow_8_7.up {
+    transform: rotate(-180deg);
+    /* Rotate the icon when the dropdown is open */
+}
+
+/* third container dropdown */
+.custom-search-container_8_7_77 {
+    position: relative;
+    width: 95%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 33px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.custom-search-container_8_7_77:hover,
+.custom-search-container_8_7_77:focus {
+    border-color: blue;
+    outline: none;
+}
+
+.custom-search-container_8_7_77 span {
+    flex: 1;
+    /* Take up available space */
+}
+
+
+
+
+.custom-search-container_8_7_77_0 {
+    position: relative;
+    width: 99%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 33px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    height: 100px;
+    align-items: center;
+
+}
+
+.custom-search-container_8_7_77_0:hover,
+.custom-search-container_8_7_77_0:focus {
+    border-color: blue;
+    outline: none;
+}
+
+.custom-search-container_8_7_77_0 span {
+    flex: 1;
+    /* Take up available space */
+}
+
+/* Box dropdown other details */
+
+.custom-search-container_8_7_7 {
+    position: relative;
+    width: 95%;
+    padding: 9px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    height: 33px;
+    background: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+
+}
+
+.custom-search-container_8_7_7:hover,
+.custom-search-container_8_7_7:focus {
+    border-color: blue;
+    outline: none;
+}
+
+.custom-search-container_8_7_7 span {
+    flex: 1;
+    /* Take up available space */
+}
+
+.custom-dropdown-content_8_7_7 {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Position it directly below the container */
+    left: 0;
+    background-color: white;
+    width: 100%;
+    border: none;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    margin-top: 2px;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.custom-dropdown-content_8_7_7.show {
+    display: block;
+    max-height: 200px;
+    /* Adjust based on content */
+}
+
+.custom-dropdown-content_8_7_7 a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.custom-dropdown-content_8_7_7 a:hover {
+    background-color: #f1f1f1;
+}
+
+.custom-dropdown-arrow_8_7_7 {
+    font-size: 10px;
+    color: #030303;
+    pointer-events: none;
+    margin: 0px 0px 0px 10px;
+}
+
+.customer_select_8_7_7 {
+    color: #646464;
+    font-size: 9px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+}
+
+.custom-dropdown-arrow_8_7_7.up {
+    transform: rotate(-180deg);
+    /* Rotate the icon when the dropdown is open */
+}
 
 
 /* Box DropDown _ 4 */
@@ -821,7 +1041,7 @@ textarea {
 
 .other-header {
     width: 100%;
-    height: 70px;
+
     background: #F1F1F1;
     border-radius: 9px
 }
@@ -830,6 +1050,56 @@ textarea {
 
 
 /* Box DropDown */
+.dis {
+    color: black;
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: 400;
+    word-wrap: break-word;
+
+}
+
+/* excel sheet */
+.discount-box {
+    width: 100%;
+    /* height: 208px; */
+    background: #F1F1F1;
+    border-radius: 3px;
+    padding: 20px;
+}
+
+/* excel sheet */
+.discount-box_2 {
+    width: 100%;
+
+    border-radius: 3px;
+    padding: 20px;
+
+
+    background: #DBF0FF;
+
+}
+
+.discount-box_2 .sub {
+
+    color: #0C3959;
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: 700;
+    word-wrap: break-word"
+
+}
+
+.discount-box_2 .sub_1 {
+
+    color: #0C3959;
+    font-size: 12px;
+    font-family: Poppins;
+    font-weight: 500;
+    word-wrap: break-word
+}
+
+
 
 /* media querys */
 @media screen and (max-height: 1400px) {
