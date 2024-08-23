@@ -251,3 +251,36 @@ document.addEventListener('click', function (event) {
         document.getElementById('customDropdownArrow_8_7_7').classList.remove('up'); // Rotate arrow to down position
     }
 });
+
+
+// invoice drop
+// Third dropdown
+// other details
+// invoice 
+/* Box DropDown */
+document.querySelector('.custom-search-container_8_7_1').addEventListener('click', function () {
+    const dropdownMenu_3_8_7_1 = document.getElementById('customDropdownMenu_8_7_1');
+    const dropdownArrow_3_8_7_1 = document.getElementById('customDropdownArrow_8_7_1');
+
+    if (dropdownMenu_3_8_7_1.classList.contains('show')) {
+        dropdownMenu_3_8_7_1.classList.remove('show');
+        setTimeout(() => dropdownMenu_3_8_7_1.style.display = 'none', 500); // Wait for animation to finish
+        dropdownArrow_3_8_7_1.classList.remove('up'); // Change arrow to down position
+    } else {
+        dropdownMenu_3_8_7_1.style.display = 'block';
+        setTimeout(() => dropdownMenu_3_8_7_1.classList.add('show'), 0); // Allow display to register before animation
+        dropdownArrow_3_8_7_1.classList.add('up'); // Rotate arrow to up position
+    }
+});
+
+// To hide the dropdown if clicked outside
+document.addEventListener('click', function (event) {
+    const searchContainer_8_7_1 = document.querySelector('.custom-search-container_8_7_1');
+    const dropdownMenu_3_8_7_1 = document.getElementById('customDropdownMenu_8_7_1');
+
+    if (!searchContainer_8_7_1.contains(event.target) && !dropdownMenu_3_8_7_1.contains(event.target)) {
+        dropdownMenu_3_8_7_1.classList.remove('show');
+        setTimeout(() => dropdownMenu_3_8_7_1.style.display = 'none', 500); // Wait for animation to finish
+        document.getElementById('customDropdownArrow_8_7_1').classList.remove('up'); // Rotate arrow to down position
+    }
+});
