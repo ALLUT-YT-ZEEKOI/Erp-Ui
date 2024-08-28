@@ -70,16 +70,15 @@ function createMainDataRow() {
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
+        const placeholderText = `Data ${i + 1}.1`; // Placeholder text for each cell
 
         if (i === 0) {
-            newCell.className = 'data1-1';
             newCell.innerHTML = `
-                <div style="display: flex; align-items: center; justify-content: space-between;">
-                    <div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; align-items: center;">
                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
-                        Data 1.1
-                        <input type="text" class="row-input" placeholder="Enter value">
                     </div>
+                    <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
                     <div style="display: flex; justify-content: space-around; align-items: center;">
                         <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
                             <i class="bi bi-plus-lg"></i>
@@ -92,8 +91,16 @@ function createMainDataRow() {
             `;
             newCell.onclick = () => toggleRows(newCell); // Attach the toggleRows event only for the first cell
         } else {
-            newCell.textContent = `New Data ${i + 1}`;
+            newCell.innerHTML = `
+                <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
+            `;
         }
+
+        // Prevent propagation when clicking the input field
+        const inputField = newCell.querySelector('input');
+        inputField.addEventListener('click', (event) => {
+            event.stopPropagation(); // Stop the click event from propagating to the parent cell
+        });
 
         newMainDataRow.appendChild(newCell);
     }
@@ -107,7 +114,6 @@ function createMainDataRow() {
 }
 
 
-// ...addOrReplaceButton.apply.apply.apply.
 // function createMainDataRow() {
 //     const tableBody = document.querySelector('#myTable tbody');
 //     const newMainDataRow = document.createElement('tr');
@@ -550,4 +556,4 @@ function createSubRowsButtonClick(row, level) {
     createSubRows(row.querySelector('td:first-child'), level);
 }
 
-// ...addOrReplaceButton.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.
+// read this i ll give you promt

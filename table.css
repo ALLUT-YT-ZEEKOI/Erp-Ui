@@ -23,7 +23,7 @@ td {
     /* Show ellipsis for overflow text */
     width: 150px;
 
-
+    background-color: white;
 
 
     color: '#1E1E1E';
@@ -406,16 +406,33 @@ button {
     transition: left 0.3s ease;
 }
 
-.search-container {
+.search-container_in {
     margin-left: 0px;
     background: transparent;
     padding: 0;
     border-color: white;
+    font-size: 12px;
+
 }
 
-.search-container input {
-
+.search-container_in input {
+    padding: 5px;
     width: 100%;
-    border: 1px solid black;
+    border: 1px solid rgba(131, 125, 125, 0.726);
     margin: 10px;
+}
+
+input.input-field.cell-input-tag {
+    width: 100%;
+    /* height: 100%; */
+    padding: 0px;
+    margin: 0px;
+    border: #ffffff;
+}
+
+input.input-field.cell-input-tag:focus {
+    border: none;
+    /* Remove the border when the input field is focused */
+    outline: none;
+    /* Ensure no outline appears when focused */
 }
