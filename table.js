@@ -81,7 +81,8 @@ function createMainDataRow() {
                         <i class="bi bi-plus-lg"></i>
                     </button>
                     <div style="display: flex; align-items: center;">
-                        <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
+                        <img src="assets/Vector (1).png" alt="" class="image_excel_1">
+                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
                     </div>
                     <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
                     <div style="display: flex; justify-content: space-around; align-items: center;">

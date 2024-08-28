@@ -1383,3 +1383,13 @@ td i.bi {
 .add_the_main_row:hover {
     background: #e3dfd852;
 }
+
+.malar {
+    background-color: rgb(17, 187, 122);
+    width: 100%;
+}
+
+.image_excel_1 {
+    width: 7px;
+    margin-right: 8px;
+}
