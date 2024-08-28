@@ -863,6 +863,18 @@ textarea {
 
 }
 
+.test-area {
+    width: 100%;
+    height: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+
 .custom-search-container_8_7_77_0:hover,
 .custom-search-container_8_7_77_0:focus {
     border-color: blue;
@@ -1186,7 +1198,7 @@ textarea {
 /* third container dropdown */
 .custom-search-container_8_7_777 {
     position: relative;
-    width: 25%;
+    width: 80%;
     padding: 9px;
     border: 1px solid #ccc;
     border-radius: 5px;

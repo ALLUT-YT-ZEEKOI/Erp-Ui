@@ -59,6 +59,7 @@ function resetDropIndicator() {
 }
 
 document.addEventListener('dragend', resetDropIndicator);
+
 function createMainDataRow() {
     const tableBody = document.querySelector('#myTable tbody');
     const newMainDataRow = document.createElement('tr');
@@ -73,6 +74,7 @@ function createMainDataRow() {
         const placeholderText = `Data ${i + 1}.1`; // Placeholder text for each cell
 
         if (i === 0) {
+            newCell.className = 'data1-1'; // Add the class name for the first cell
             newCell.innerHTML = `
                 <div style="display: flex; justify-content: space-between;">
                     <div style="display: flex; align-items: center;">
@@ -112,6 +114,11 @@ function createMainDataRow() {
     newMainDataRow.addEventListener('dragover', allowDrop);
     newMainDataRow.addEventListener('drop', drop);
 }
+// Initially show 2 rows when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    createMainDataRow();
+    createMainDataRow();
+});
 
 
 // function createMainDataRow() {
