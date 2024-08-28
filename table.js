@@ -453,3 +453,5 @@ function createSubRowsButtonClick(row, level) {
 function createSubRowsButtonClick(row, level) {
     createSubRows(row.querySelector('td:first-child'), level);
 }
+
+// ...addOrReplaceButton.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.

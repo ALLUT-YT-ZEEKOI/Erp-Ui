@@ -284,3 +284,18 @@ document.addEventListener('click', function (event) {
         document.getElementById('customDropdownArrow_8_7_1').classList.remove('up'); // Rotate arrow to down position
     }
 });
+
+
+function toggleButton(element) {
+    event.stopPropagation(); // Prevent triggering cell click event
+    const circle = element.querySelector('.toggle-circle');
+    const isActive = circle.style.left === '22px';
+
+    if (isActive) {
+        circle.style.left = '1px';
+        element.style.backgroundColor = '#ccc';
+    } else {
+        circle.style.left = '22px';
+        element.style.backgroundColor = '#4CAF50';
+    }
+}
