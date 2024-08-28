@@ -1347,3 +1347,39 @@ td i.bi {
     /* Adjust spacing as needed */
     vertical-align: middle;
 }
+
+.cell-content {
+    display: flex;
+    margin: 10px;
+}
+
+/* Hide the button by default */
+.cell-content .data-1-1_btn {
+    display: none;
+    position: absolute;
+    left: -21px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Show the button when hovering over the cell */
+.data1-1 {
+    position: relative;
+    /* Create a positioning context for the button */
+}
+
+.data1-1:hover .data-1-1_btn {
+    display: block;
+}
+
+.add_the_main_row {
+    background: transparent;
+    color: #000000a6;
+    font-size: 13px;
+    text-align: start;
+    width: 100%;
+}
+
+.add_the_main_row:hover {
+    background: #e3dfd852;
+}

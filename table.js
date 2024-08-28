@@ -76,15 +76,15 @@ function createMainDataRow() {
         if (i === 0) {
             newCell.className = 'data1-1'; // Add the class name for the first cell
             newCell.innerHTML = `
-                <div style="display: flex; justify-content: space-between;">
+                  <div class="cell-content">
+                    <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
+                        <i class="bi bi-plus-lg"></i>
+                    </button>
                     <div style="display: flex; align-items: center;">
                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
                     </div>
                     <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
                     <div style="display: flex; justify-content: space-around; align-items: center;">
-                        <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
-                            <i class="bi bi-plus-lg"></i>
-                        </button>
                         <div class="toggle-button" onclick="toggleButton(this)">
                             <div class="toggle-circle"></div>
                         </div>
