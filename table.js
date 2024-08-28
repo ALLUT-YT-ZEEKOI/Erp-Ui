@@ -123,7 +123,6 @@ function createnormalrow() {
     createNormalRow3(normalRows[1]);
 }
 
-
 function toggleRows(cell) {
     const currentRow = cell.parentElement;
     const nextRows = [];
@@ -139,8 +138,14 @@ function toggleRows(cell) {
     if (nextRows.length > 0) {
         if (nextRows[0].classList.contains('hidden')) {
             nextRows.forEach(row => row.classList.remove('hidden'));
+            // Change icon to down when expanding
+            cell.querySelector('i').classList.remove('bi-caret-right-fill');
+            cell.querySelector('i').classList.add('bi-caret-down-fill');
         } else {
             nextRows.forEach(row => row.classList.add('hidden'));
+            // Change icon to right when collapsing
+            cell.querySelector('i').classList.remove('bi-caret-down-fill');
+            cell.querySelector('i').classList.add('bi-caret-right-fill');
         }
     } else {
         if (cell.classList.contains('processed')) return;
@@ -199,6 +204,7 @@ function toggleRows(cell) {
         normalRows[1].insertAdjacentElement('afterend', addRowButtonRow);
     }
 }
+
 
 
 
@@ -354,6 +360,7 @@ function createnormalrow_2(event) {
 // ...addOrReplaceButton.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.apply.
 
 function toggleSubRows(cell, level) {
+    console.log("click");
     const currentRow = cell.parentElement;
     const nextRows = [];
 
@@ -363,32 +370,47 @@ function toggleSubRows(cell, level) {
         nextSibling = nextSibling.nextElementSibling;
     }
 
-    if (nextRows.length > 0) {
-        if (nextRows[0].classList.contains('hidden')) {
-            nextRows.forEach(row => row.classList.remove('hidden'));
-        } else {
-            nextRows.forEach(row => row.classList.add('hidden'));
-        }
+    // Update the icon immediately when clicked
+    const iconElement = cell.querySelector('i');
+    if (nextRows.length > 0 && nextRows[0].classList.contains('hidden')) {
+        iconElement.classList.remove('bi-caret-right-fill');
+        iconElement.classList.add('bi-caret-down-fill');
     } else {
-        if (cell.classList.contains('sub-row-processed')) return;
+        iconElement.classList.remove('bi-caret-down-fill');
+        iconElement.classList.add('bi-caret-right-fill');
+    }
 
-        cell.classList.add('sub-row-processed');
-        createSubRows(cell, level);
+    // Toggle rows visibility
+    if (nextRows.length > 0) {
+        nextRows.forEach(row => {
+            row.classList.toggle('hidden');
+        });
+    } else {
+        if (!cell.classList.contains('sub-row-processed')) {
+            cell.classList.add('sub-row-processed');
+            createSubRows(cell, level);
+
+            // Ensure the icon is set correctly after creating new sub-rows
+            iconElement.classList.remove('bi-caret-right-fill');
+            iconElement.classList.add('bi-caret-down-fill');
+        }
     }
 }
+
 
 function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
     const currentRow = cell.parentElement;
     const newRow = document.createElement('tr');
-    newRow.className = `<i class="bi bi-caret-right-fill"></i>  sub-row level-${level}`;
+    newRow.className = `sub-row level-${level}`;
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
-        newCell.textContent = `Sub-ro ${level}.${i + 1}`;
         if (i === 0) {
-            newCell.onclick = () => toggleSubRows(newCell, level + 1);
+            // Set innerHTML for the first cell to include the icon
+            newCell.innerHTML = `<i class="bi bi-caret-right-fill"></i> Sub-row ${level}.${i + 1}`;
+
             // Create and add the small button
             const smallButton = document.createElement('button');
             smallButton.textContent = '+';
@@ -398,6 +420,11 @@ function createSubRows(cell, level) {
                 createSubRows(newCell, level + 1);
             };
             newCell.appendChild(smallButton);
+
+            // Make the first cell clickable to toggle sub-rows
+            newCell.onclick = () => toggleSubRows(newCell, level + 1);
+        } else {
+            newCell.textContent = `Sub-row ${level}.${i + 1}`;
         }
         newRow.appendChild(newCell);
     }
