@@ -1292,3 +1292,9 @@ td {
     background-color: #555;
     /* Darker color on hover */
 }
+
+td i.bi {
+    margin-right: 2px;
+    /* Adjust spacing as needed */
+    vertical-align: middle;
+}

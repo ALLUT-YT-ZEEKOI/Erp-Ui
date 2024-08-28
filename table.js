@@ -60,7 +60,6 @@ function resetDropIndicator() {
 
 document.addEventListener('dragend', resetDropIndicator);
 
-
 function createMainDataRow() {
     const tableBody = document.querySelector('#myTable tbody');
     const newMainDataRow = document.createElement('tr');
@@ -72,10 +71,30 @@ function createMainDataRow() {
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
-        newCell.textContent = `New Data ${i + 1}`;
+
         if (i === 0) {
-            newCell.onclick = () => toggleRows(newCell);
+            newCell.className = 'data1-1';
+            newCell.innerHTML = `
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <div>
+                        <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
+                        Data 1.1
+                    </div>
+                    <div style="display: flex; justify-content: space-around; align-items: center;">
+                        <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                        <div class="toggle-button" onclick="toggleButton(this)">
+                            <div class="toggle-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            newCell.onclick = () => toggleRows(newCell); // Attach the toggleRows event only for the first cell
+        } else {
+            newCell.textContent = `New Data ${i + 1}`;
         }
+
         newMainDataRow.appendChild(newCell);
     }
 
@@ -87,6 +106,7 @@ function createMainDataRow() {
     newMainDataRow.addEventListener('drop', drop);
 }
 
+
 // Ensure drag events apply to entire sections
 document.querySelectorAll('.main-data-row').forEach(row => {
     row.addEventListener('dragstart', drag);
@@ -95,14 +115,13 @@ document.querySelectorAll('.main-data-row').forEach(row => {
 });
 
 
-const maxLevel = 8;
+const maxLevel = 17;
 
 
 
 function createnormalrow() {
     createNormalRow3(normalRows[1]);
 }
-
 
 
 function toggleRows(cell) {
@@ -135,9 +154,10 @@ function toggleRows(cell) {
             normalRow.className = 'normal-row';
             for (let i = 0; i < 8; i++) {
                 const newCell = document.createElement('td');
-                newCell.textContent = `Normal Row ${rowIndex} - ${i + 1}`;
-
                 if (i === 0) {
+                    // Set innerHTML for the first cell to include the icon
+                    newCell.innerHTML = `<i class="bi bi-caret-right-fill"></i>   Normal Row ${rowIndex} - ${i + 1}`;
+
                     // Create a small "+" button inside the first cell
                     const smallButton = document.createElement('button');
                     smallButton.textContent = '+';
@@ -150,14 +170,14 @@ function toggleRows(cell) {
                         createSubRows(cell, 1); // This will create sub-row 1.1
                     };
 
-
-                    // Append the button to the first cells  
+                    // Append the button to the first cell
                     newCell.appendChild(smallButton);
 
                     // Make the first cell clickable to toggle sub-rows
                     newCell.onclick = () => toggleSubRows(newCell, 1);
+                } else {
+                    newCell.textContent = `Normal Row ${rowIndex} - ${i + 1}`;
                 }
-
                 normalRow.appendChild(newCell);
             }
             normalRows.push(normalRow);
@@ -179,6 +199,7 @@ function toggleRows(cell) {
         normalRows[1].insertAdjacentElement('afterend', addRowButtonRow);
     }
 }
+
 
 
 
@@ -361,11 +382,11 @@ function createSubRows(cell, level) {
 
     const currentRow = cell.parentElement;
     const newRow = document.createElement('tr');
-    newRow.className = `sub-row level-${level}`;
+    newRow.className = `<i class="bi bi-caret-right-fill"></i>  sub-row level-${level}`;
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
-        newCell.textContent = `Sub-row ${level}.${i + 1}`;
+        newCell.textContent = `Sub-ro ${level}.${i + 1}`;
         if (i === 0) {
             newCell.onclick = () => toggleSubRows(newCell, level + 1);
             // Create and add the small button
