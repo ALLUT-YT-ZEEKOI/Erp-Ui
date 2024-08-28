@@ -59,7 +59,6 @@ function resetDropIndicator() {
 }
 
 document.addEventListener('dragend', resetDropIndicator);
-
 function createMainDataRow() {
     const tableBody = document.querySelector('#myTable tbody');
     const newMainDataRow = document.createElement('tr');
@@ -79,6 +78,7 @@ function createMainDataRow() {
                     <div>
                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
                         Data 1.1
+                        <input type="text" class="row-input" placeholder="Enter value">
                     </div>
                     <div style="display: flex; justify-content: space-around; align-items: center;">
                         <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
@@ -105,6 +105,54 @@ function createMainDataRow() {
     newMainDataRow.addEventListener('dragover', allowDrop);
     newMainDataRow.addEventListener('drop', drop);
 }
+
+
+// ...addOrReplaceButton.apply.apply.apply.
+// function createMainDataRow() {
+//     const tableBody = document.querySelector('#myTable tbody');
+//     const newMainDataRow = document.createElement('tr');
+//     newMainDataRow.className = 'main-data-row';
+//     newMainDataRow.draggable = true;
+//     newMainDataRow.ondragstart = drag;
+//     newMainDataRow.ondragover = allowDrop;
+//     newMainDataRow.ondrop = drop;
+
+//     for (let i = 0; i < 8; i++) {
+//         const newCell = document.createElement('td');
+
+//         if (i === 0) {
+//             newCell.className = 'data1-1';
+//             newCell.innerHTML = `
+//                 <div style="display: flex; align-items: center; justify-content: space-between;">
+//                     <div>
+//                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
+//                         Data 1.1
+//                     </div>
+//                     <div style="display: flex; justify-content: space-around; align-items: center;">
+//                         <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
+//                             <i class="bi bi-plus-lg"></i>
+//                         </button>
+//                         <div class="toggle-button" onclick="toggleButton(this)">
+//                             <div class="toggle-circle"></div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             `;
+//             newCell.onclick = () => toggleRows(newCell); // Attach the toggleRows event only for the first cell
+//         } else {
+//             newCell.textContent = `New Data ${i + 1}`;
+//         }
+
+//         newMainDataRow.appendChild(newCell);
+//     }
+
+//     tableBody.appendChild(newMainDataRow);
+
+//     // Reattach event listeners to newly added rows
+//     newMainDataRow.addEventListener('dragstart', drag);
+//     newMainDataRow.addEventListener('dragover', allowDrop);
+//     newMainDataRow.addEventListener('drop', drop);
+// }
 
 
 // Ensure drag events apply to entire sections
