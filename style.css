@@ -1247,3 +1247,9 @@ textarea {
         outline: none;
     }
 }
+
+
+
+td {
+    border: 1px solid black;
+}
