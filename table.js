@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     createMainDataRow();
 });
 
+
 // Ensure drag events apply to entire sections
 document.querySelectorAll('.main-data-row').forEach(row => {
     row.addEventListener('dragstart', drag);
