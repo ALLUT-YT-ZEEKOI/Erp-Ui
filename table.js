@@ -143,7 +143,7 @@ document.querySelectorAll('.main-data-row').forEach(row => {
 
 const maxLevel = 17;
 
-
+let lastRowIndex = 1; // Starting index for the next row (assuming 4-2 is the first)
 
 function toggleRows(cell) {
     const currentRow = cell.parentElement;
@@ -173,121 +173,120 @@ function toggleRows(cell) {
         if (cell.classList.contains('processed')) return;
 
         cell.classList.add('processed');
-        const tableBody = document.querySelector('#myTable tbody');
 
-        const normalRows = [];
-        for (let rowIndex = 1; rowIndex <= 3; rowIndex++) {  // Now generating 3 rows
-            const normalRow = document.createElement('tr');
-            normalRow.className = 'normal-row';
-            normalRow.style.position = 'relative'; // Create a positioning context for the button
-
-            for (let i = 0; i < 8; i++) {
-                const newCell = document.createElement('td');
-                if (i === 0) {
-                    // Create container for cell content and button
-                    const cellContent = document.createElement('div');
-                    cellContent.className = 'cell-content';
-
-                    // Set innerHTML for the first cell to include the icon
-                    cellContent.innerHTML = `<i class="bi bi-caret-right-fill"></i> Normal Row ${rowIndex} - ${i + 1}`;
-
-                    // Create a small "+" button inside the first cell
-                    const smallButton = document.createElement('button');
-                    smallButton.textContent = '+';
-                    smallButton.className = 'show-btn'; // Updated class name
-                    smallButton.onclick = (event) => {
-                        event.stopPropagation(); // Prevent triggering cell click event
-
-                        // Find the first cell of the current row to use as the reference for creating sub-rows
-                        const cell = event.target.closest('td');
-                        createSubRows(cell, 1); // This will create sub-row 1.1
-                    };
-
-                    // Append the button to the container
-                    cellContent.appendChild(smallButton);
-                    newCell.appendChild(cellContent);
-
-                    // Make the first cell clickable to toggle sub-rows
-                    newCell.onclick = () => toggleSubRows(newCell, 1);
-                } else {
-                    newCell.textContent = `Normal Row ${rowIndex} - ${i + 1}`;
-                }
-                normalRow.appendChild(newCell);
-            }
-            normalRows.push(normalRow);
-        }
-
-        // Insert the three normal rows after the current row
-        currentRow.insertAdjacentElement('afterend', normalRows[2]);
-        currentRow.insertAdjacentElement('afterend', normalRows[1]);
-        currentRow.insertAdjacentElement('afterend', normalRows[0]);
-
-        // Adding the button to create more rows after the last normal row
-        const addRowButtonRow = document.createElement('tr');
-        const addRowButtonCell = document.createElement('td');
-        addRowButtonCell.colSpan = 8;
-
-        // Create the add row button
-        // const addRowButton = document.createElement('button');
-        // addRowButton.textContent = 'Add Row';
-        // addRowButton.className = 'add-row-button';
-
-        addRowButtonCell.appendChild(addRowButton);
-        addRowButtonRow.appendChild(addRowButtonCell);
-        normalRows[2].insertAdjacentElement('afterend', addRowButtonRow); // Adjusted to insert after the third normal row
+        createNormalRow(cell); // Create the first row (4-2)
     }
 }
 
-
-
-
-
-
-function createnormalrow_2(event) {
-    event.stopPropagation(); // Prevent the click event from bubbling up to the cell
-
-    // Find the closest row to insert the new row after
-    const currentRow = event.target.closest('td').parentElement;
-
-    if (!currentRow) return;
+function createNormalRow(cell) {
+    const currentRow = cell.parentElement;
 
     // Create a new normal row
     const normalRow = document.createElement('tr');
     normalRow.className = 'normal-row';
+    normalRow.style.position = 'relative';
 
-    for (let j = 0; j < 8; j++) {
+    for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
-        newCell.textContent = `Normal Row - ${j + 1}`;
+        if (i === 0) {
+            // Create container for cell content and button
+            const cellContent = document.createElement('div');
+            cellContent.className = 'cell-content';
 
-        if (j === 0) {
             // Set innerHTML for the first cell to include the icon
-            newCell.innerHTML = `<i class="bi bi-caret-right-fill"></i> Normal Row - ${j + 1}`;
+            cellContent.innerHTML = `<i class="bi bi-caret-right-fill"></i> Normal Row ${lastRowIndex} - ${i + 1}`;
 
             // Create a small "+" button inside the first cell
             const smallButton = document.createElement('button');
             smallButton.textContent = '+';
-            smallButton.className = 'small-btn';
+            smallButton.className = 'show-btn';
             smallButton.onclick = (event) => {
-                event.stopPropagation(); // Prevent triggering cell click event
+                event.stopPropagation();
 
                 // Find the first cell of the current row to use as the reference for creating sub-rows
                 const cell = event.target.closest('td');
                 createSubRows(cell, 1); // This will create sub-row 1.1
             };
 
-            // Append the button to the first cell
-            newCell.appendChild(smallButton);
+            // Append the button to the container
+            cellContent.appendChild(smallButton);
+            newCell.appendChild(cellContent);
 
             // Make the first cell clickable to toggle sub-rows
             newCell.onclick = () => toggleSubRows(newCell, 1);
+        } else {
+            newCell.textContent = `Normal Row ${lastRowIndex} - ${i + 1}`;
         }
-
         normalRow.appendChild(newCell);
     }
 
     // Insert the new row after the current row
     currentRow.insertAdjacentElement('afterend', normalRow);
+
+    // Increment lastRowIndex to ensure the next row has the correct numbering
+    lastRowIndex++;
 }
+
+function createnormalrow_2(event) {
+    event.stopPropagation(); // Prevent the click event from bubbling up to other elements
+
+    const targetCell = event.target.closest('td');
+    if (!targetCell) return;
+
+    createNormalRow(targetCell);
+}
+
+
+
+
+
+
+// function createnormalrow_2(event) {
+//     event.stopPropagation(); // Prevent the click event from bubbling up
+
+//     // Find the closest row to insert the new row after
+//     const currentRow = event.target.closest('td').parentElement;
+
+//     if (!currentRow) return;
+
+//     // Create a new normal row
+//     const normalRow = document.createElement('tr');
+//     normalRow.className = 'normal-row';
+
+//     for (let j = 0; j < 8; j++) {
+//         const newCell = document.createElement('td');
+//         newCell.textContent = `Normal Row - ${j + 1}`;
+
+//         if (j === 0) {
+//             // Set innerHTML for the first cell to include the icon
+//             newCell.innerHTML = `<i class="bi bi-caret-right-fill"></i> Normal Row - ${j + 1}`;
+
+//             // Create a small "+" button inside the first cell
+//             const smallButton = document.createElement('button');
+//             smallButton.textContent = '+';
+//             smallButton.className = 'show-btn'; // Updated class name
+//             smallButton.onclick = (event) => {
+//                 event.stopPropagation(); // Prevent triggering cell click event
+
+//                 // Find the first cell of the current row to use as the reference for creating sub-rows
+//                 const cell = event.target.closest('td');
+//                 createSubRows(cell, 1); // Create sub-row 1.1
+//             };
+
+//             // Append the button to the first cell
+//             newCell.appendChild(smallButton);
+
+//             // Make the first cell clickable to toggle sub-rows
+//             newCell.onclick = () => toggleSubRows(newCell, 1);
+//         }
+
+//         normalRow.appendChild(newCell);
+//     }
+
+//     // Insert the new row after the current row
+//     currentRow.insertAdjacentElement('afterend', normalRow);
+// }
+
 
 
 function toggleSubRows(cell, level) {

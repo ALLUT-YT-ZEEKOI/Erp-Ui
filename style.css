@@ -124,6 +124,7 @@ body {
     max-height: 0px;
     margin-top: 12px;
     transition: max-height 0.5s ease-out;
+
     /* padding: 20px; */
 }
 
@@ -1439,4 +1440,12 @@ td i.bi {
     width: 7px;
     margin-right: 8px;
     cursor: pointer;
+}
+
+.address-details-dt {
+    width: 100%;
+    background: #DBF0FF;
+    padding: 1px;
+    border-radius: 8px;
+    display: none;
 }

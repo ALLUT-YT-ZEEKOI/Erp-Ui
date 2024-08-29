@@ -462,3 +462,27 @@ input.input-field.cell-input-tag:focus {
 .normal-row:hover .show-btn {
     display: block;
 }
+
+/* Style for the normal row to create a positioning context */
+.normal-row {
+    position: relative;
+    /* Create a positioning context for the button */
+}
+
+/* Hide the button by default */
+.normal-row .show-btn {
+    display: none;
+    position: absolute;
+    left: -21px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: blue;
+    background: transparent;
+    width: 0px;
+    font-size: 24px;
+}
+
+/* Show the button when hovering over the row */
+.normal-row:hover .show-btn {
+    display: block;
+}
