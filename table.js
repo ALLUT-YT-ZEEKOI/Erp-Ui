@@ -287,16 +287,19 @@ function createnormalrow_2(event) {
 //     currentRow.insertAdjacentElement('afterend', normalRow);
 // }
 
-
+let nextId = 1; // A global variable to keep track of the next available ID
 
 function toggleSubRows(cell, level) {
     console.log("click");
     const currentRow = cell.parentElement;
     const nextRows = [];
+    const parentId = currentRow.getAttribute('data-id');
 
     let nextSibling = currentRow.nextElementSibling;
     while (nextSibling && nextSibling.classList.contains('sub-row')) {
-        nextRows.push(nextSibling);
+        if (nextSibling.getAttribute('data-parent') === parentId) {
+            nextRows.push(nextSibling);
+        }
         nextSibling = nextSibling.nextElementSibling;
     }
 
@@ -314,6 +317,10 @@ function toggleSubRows(cell, level) {
     if (nextRows.length > 0) {
         nextRows.forEach(row => {
             row.classList.toggle('hidden');
+            if (!row.classList.contains('hidden')) {
+                // Ensure the row's sub-rows are also toggled
+                toggleAllDescendantRows(row);
+            }
         });
     } else {
         if (!cell.classList.contains('sub-row-processed')) {
@@ -327,13 +334,14 @@ function toggleSubRows(cell, level) {
     }
 }
 
-
 function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
     const currentRow = cell.parentElement;
     const newRow = document.createElement('tr');
     newRow.className = `sub-row level-${level}`;
+    newRow.setAttribute('data-id', nextId++);
+    newRow.setAttribute('data-parent', currentRow.getAttribute('data-id'));
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
@@ -370,9 +378,108 @@ function createSubRows(cell, level) {
     addOrReplaceButton(newRow, level);
 }
 
+function toggleAllDescendantRows(row) {
+    let nextRow = row.nextElementSibling;
+    const parentId = row.getAttribute('data-id');
+
+    while (nextRow && nextRow.classList.contains('sub-row')) {
+        if (nextRow.getAttribute('data-parent') === parentId) {
+            nextRow.classList.add('hidden');
+            toggleAllDescendantRows(nextRow); // Recursively hide all descendants
+        }
+        nextRow = nextRow.nextElementSibling;
+    }
+}
+
+// Example of adding or replacing button in rows (implementation can vary)
+function addOrReplaceButton(row, level) {
+    // Add logic to add or replace buttons as needed
+}
+
+
+// function toggleSubRows(cell, level) {
+//     console.log("click");
+//     const currentRow = cell.parentElement;
+//     const nextRows = [];
+
+//     let nextSibling = currentRow.nextElementSibling;
+//     while (nextSibling && nextSibling.classList.contains('sub-row')) {
+//         nextRows.push(nextSibling);
+//         nextSibling = nextSibling.nextElementSibling;
+//     }
+
+//     // Update the icon immediately when clicked
+//     const iconElement = cell.querySelector('i');
+//     if (nextRows.length > 0 && nextRows[0].classList.contains('hidden')) {
+//         iconElement.classList.remove('bi-caret-right-fill');
+//         iconElement.classList.add('bi-caret-down-fill');
+//     } else {
+//         iconElement.classList.remove('bi-caret-down-fill');
+//         iconElement.classList.add('bi-caret-right-fill');
+//     }
+
+//     // Toggle rows visibility
+//     if (nextRows.length > 0) {
+//         nextRows.forEach(row => {
+//             row.classList.toggle('hidden');
+//         });
+//     } else {
+//         if (!cell.classList.contains('sub-row-processed')) {
+//             cell.classList.add('sub-row-processed');
+//             createSubRows(cell, level);
+
+//             // Ensure the icon is set correctly after creating new sub-rows
+//             iconElement.classList.remove('bi-caret-right-fill');
+//             iconElement.classList.add('bi-caret-down-fill');
+//         }
+//     }
+// }
+
+
+// function createSubRows(cell, level) {
+//     if (level >= maxLevel) return;
+
+//     const currentRow = cell.parentElement;
+//     const newRow = document.createElement('tr');
+//     newRow.className = `sub-row level-${level}`;
+
+//     for (let i = 0; i < 8; i++) {
+//         const newCell = document.createElement('td');
+//         if (i === 0) {
+//             // Create container for cell content and button
+//             const cellContent = document.createElement('div');
+//             cellContent.className = 'cell-content';
+
+//             // Set innerHTML for the first cell to include the icon
+//             cellContent.innerHTML = `
+//                 <i class="bi bi-caret-right-fill"></i> Sub-row ${level}.${i + 1}
+//             `;
+
+//             // Create and add the small button
+//             const smallButton = document.createElement('button');
+//             smallButton.textContent = '+';
+//             smallButton.className = 'small-btnn';
+//             smallButton.onclick = (event) => {
+//                 event.stopPropagation();
+//                 createSubRows(newCell, level + 1);
+//             };
+//             cellContent.appendChild(smallButton);
+//             newCell.appendChild(cellContent);
+
+//             // Make the first cell clickable to toggle sub-rows
+//             newCell.onclick = () => toggleSubRows(newCell, level + 1);
+//         } else {
+//             newCell.textContent = `Sub-row ${level}.${i + 1}`;
+//         }
+//         newRow.appendChild(newCell);
+//     }
+
+//     currentRow.insertAdjacentElement('afterend', newRow);
+//     addOrReplaceButton(newRow, level);
+// }
+
 smallButton.onclick = (event) => {
     event.stopPropagation();
     createSubRows(newCell, level + 1);
 };
-
 
