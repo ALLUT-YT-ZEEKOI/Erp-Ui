@@ -185,6 +185,7 @@ function createNormalRow(cell) {
     const normalRow = document.createElement('tr');
     normalRow.className = 'normal-row';
     normalRow.style.position = 'relative';
+    normalRow.setAttribute('data-id', nextId++); // Assign a unique ID to the normal row
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
@@ -226,7 +227,6 @@ function createNormalRow(cell) {
     // Increment lastRowIndex to ensure the next row has the correct numbering
     lastRowIndex++;
 }
-
 function createnormalrow_2(event) {
     event.stopPropagation(); // Prevent the click event from bubbling up to other elements
 
@@ -239,56 +239,8 @@ function createnormalrow_2(event) {
 
 
 
-
-
-// function createnormalrow_2(event) {
-//     event.stopPropagation(); // Prevent the click event from bubbling up
-
-//     // Find the closest row to insert the new row after
-//     const currentRow = event.target.closest('td').parentElement;
-
-//     if (!currentRow) return;
-
-//     // Create a new normal row
-//     const normalRow = document.createElement('tr');
-//     normalRow.className = 'normal-row';
-
-//     for (let j = 0; j < 8; j++) {
-//         const newCell = document.createElement('td');
-//         newCell.textContent = `Normal Row - ${j + 1}`;
-
-//         if (j === 0) {
-//             // Set innerHTML for the first cell to include the icon
-//             newCell.innerHTML = `<i class="bi bi-caret-right-fill"></i> Normal Row - ${j + 1}`;
-
-//             // Create a small "+" button inside the first cell
-//             const smallButton = document.createElement('button');
-//             smallButton.textContent = '+';
-//             smallButton.className = 'show-btn'; // Updated class name
-//             smallButton.onclick = (event) => {
-//                 event.stopPropagation(); // Prevent triggering cell click event
-
-//                 // Find the first cell of the current row to use as the reference for creating sub-rows
-//                 const cell = event.target.closest('td');
-//                 createSubRows(cell, 1); // Create sub-row 1.1
-//             };
-
-//             // Append the button to the first cell
-//             newCell.appendChild(smallButton);
-
-//             // Make the first cell clickable to toggle sub-rows
-//             newCell.onclick = () => toggleSubRows(newCell, 1);
-//         }
-
-//         normalRow.appendChild(newCell);
-//     }
-
-//     // Insert the new row after the current row
-//     currentRow.insertAdjacentElement('afterend', normalRow);
-// }
-
-
 let nextId = 1; // A global variable to keep track of the next available ID
+
 function toggleSubRows(cell, level) {
     console.log("click");
     const currentRow = cell.parentElement;
@@ -328,6 +280,47 @@ function toggleSubRows(cell, level) {
         });
     }
 }
+// function toggleSubRows(cell, level) {
+//     console.log("click");
+//     const currentRow = cell.parentElement;
+//     const nextRows = [];
+//     const parentId = currentRow.getAttribute('data-id');
+
+//     let nextSibling = currentRow.nextElementSibling;
+//     while (nextSibling && nextSibling.classList.contains('sub-row')) {
+//         if (nextSibling.getAttribute('data-parent') === parentId) {
+//             nextRows.push(nextSibling);
+//         }
+//         nextSibling = nextSibling.nextElementSibling;
+//     }
+
+//     // Update the icon immediately when clicked
+//     const iconElement = cell.querySelector('i');
+//     const isCollapsed = nextRows.length > 0 && nextRows[0].classList.contains('hidden');
+
+//     // Toggle the icon based on the current state
+//     if (isCollapsed) {
+//         iconElement.classList.remove('bi-caret-right-fill');
+//         iconElement.classList.add('bi-caret-down-fill');
+//         // Show the child rows
+//         nextRows.forEach(row => {
+//             row.classList.remove('hidden');
+//             // Ensure the row's sub-rows are also shown
+//             toggleAllDescendantRows(row);
+//         });
+//     } else {
+//         iconElement.classList.remove('bi-caret-down-fill');
+//         iconElement.classList.add('bi-caret-right-fill');
+//         // Hide the child rows
+//         nextRows.forEach(row => {
+//             row.classList.add('hidden');
+//             // Ensure all descendant rows are hidden
+//             toggleAllDescendantRows(row);
+//         });
+//     }
+// }
+
+
 function toggleAllDescendantRows(row) {
     let nextRow = row.nextElementSibling;
     const parentId = row.getAttribute('data-id');
