@@ -71,18 +71,20 @@ function createMainDataRow() {
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
-        const placeholderText = `Data ${i + 1}.1`; // Placeholder text for each cell
+        const placeholderText = `Data ${i + 1}.1`;
 
         if (i === 0) {
-            newCell.className = 'data1-1'; // Add the class name for the first cell
+            newCell.className = 'data1-1';
+
             newCell.innerHTML = `
-                  <div class="cell-content">
-                    <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
+                        <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
                         <i class="bi bi-plus-lg"></i>
                     </button>
+                  <div class="cell-content">
+             
                     <div style="display: flex; align-items: center;">
                         <img src="assets/Vector (1).png" alt="" class="image_excel_1">
-                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
+                        <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
                     </div>
                     <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
                     <div style="display: flex; justify-content: space-around; align-items: center;">
@@ -92,14 +94,17 @@ function createMainDataRow() {
                     </div>
                 </div>
             `;
-            newCell.onclick = () => toggleRows(newCell); // Attach the toggleRows event only for the first cell
+
+            // Attach the toggleRows event to the image instead of the cell
+            const toggleImage = newCell.querySelector('.image_excel_1');
+            toggleImage.onclick = () => toggleRows(newCell);
+
         } else {
             newCell.innerHTML = `
                 <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
             `;
         }
 
-        // Prevent propagation when clicking the input field
         const inputField = newCell.querySelector('input');
         inputField.addEventListener('click', (event) => {
             event.stopPropagation(); // Stop the click event from propagating to the parent cell
@@ -115,6 +120,7 @@ function createMainDataRow() {
     newMainDataRow.addEventListener('dragover', allowDrop);
     newMainDataRow.addEventListener('drop', drop);
 }
+
 // Initially show 2 rows when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     createMainDataRow();
@@ -122,51 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// function createMainDataRow() {
-//     const tableBody = document.querySelector('#myTable tbody');
-//     const newMainDataRow = document.createElement('tr');
-//     newMainDataRow.className = 'main-data-row';
-//     newMainDataRow.draggable = true;
-//     newMainDataRow.ondragstart = drag;
-//     newMainDataRow.ondragover = allowDrop;
-//     newMainDataRow.ondrop = drop;
 
-//     for (let i = 0; i < 8; i++) {
-//         const newCell = document.createElement('td');
-
-//         if (i === 0) {
-//             newCell.className = 'data1-1';
-//             newCell.innerHTML = `
-//                 <div style="display: flex; align-items: center; justify-content: space-between;">
-//                     <div>
-//                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
-//                         Data 1.1
-//                     </div>
-//                     <div style="display: flex; justify-content: space-around; align-items: center;">
-//                         <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
-//                             <i class="bi bi-plus-lg"></i>
-//                         </button>
-//                         <div class="toggle-button" onclick="toggleButton(this)">
-//                             <div class="toggle-circle"></div>
-//                         </div>
-//                     </div>
-//                 </div>
-//             `;
-//             newCell.onclick = () => toggleRows(newCell); // Attach the toggleRows event only for the first cell
-//         } else {
-//             newCell.textContent = `New Data ${i + 1}`;
-//         }
-
-//         newMainDataRow.appendChild(newCell);
-//     }
-
-//     tableBody.appendChild(newMainDataRow);
-
-//     // Reattach event listeners to newly added rows
-//     newMainDataRow.addEventListener('dragstart', drag);
-//     newMainDataRow.addEventListener('dragover', allowDrop);
-//     newMainDataRow.addEventListener('drop', drop);
-// }
 
 
 // Ensure drag events apply to entire sections
@@ -184,7 +146,6 @@ const maxLevel = 17;
 function createnormalrow() {
     createNormalRow3(normalRows[1]);
 }
-
 function toggleRows(cell) {
     const currentRow = cell.parentElement;
     const nextRows = [];
@@ -216,7 +177,7 @@ function toggleRows(cell) {
         const tableBody = document.querySelector('#myTable tbody');
 
         const normalRows = [];
-        for (let rowIndex = 1; rowIndex <= 2; rowIndex++) {
+        for (let rowIndex = 1; rowIndex <= 3; rowIndex++) {  // Now generating 3 rows
             const normalRow = document.createElement('tr');
             normalRow.className = 'normal-row';
             for (let i = 0; i < 8; i++) {
@@ -250,23 +211,27 @@ function toggleRows(cell) {
             normalRows.push(normalRow);
         }
 
+        // Insert the three normal rows after the current row
+        currentRow.insertAdjacentElement('afterend', normalRows[2]);
         currentRow.insertAdjacentElement('afterend', normalRows[1]);
         currentRow.insertAdjacentElement('afterend', normalRows[0]);
 
+        // Adding the button to create more rows after the last normal row
         const addRowButtonRow = document.createElement('tr');
         const addRowButtonCell = document.createElement('td');
         addRowButtonCell.colSpan = 8;
 
+        // Create the 'Add New Normal Row' button (commented out for now)
         // const addRowButton = document.createElement('button');
         // addRowButton.textContent = 'Add New Normal Row';
-        // addRowButton.onclick = () => createNormalRow3(normalRows[1]);
+        // addRowButton.onclick = () => createNormalRow3(normalRows[2]); 
+        // Adjusted to insert after the third normal row
 
         addRowButtonCell.appendChild(addRowButton);
         addRowButtonRow.appendChild(addRowButtonCell);
-        normalRows[1].insertAdjacentElement('afterend', addRowButtonRow);
+        normalRows[2].insertAdjacentElement('afterend', addRowButtonRow); // Adjusted to insert after the third normal row
     }
 }
-
 
 
 
@@ -310,58 +275,40 @@ function createNormalRow3(afterRow) {
 function createnormalrow_2(event) {
     event.stopPropagation(); // Prevent the click event from bubbling up to the cell
 
-    // Find the closest row to insert the new rows after
+    // Find the closest row to insert the new row after
     const currentRow = event.target.closest('td').parentElement;
 
     if (!currentRow) return;
 
-    // Create new normal rows
-    const normalRows = [];
-    for (let i = 1; i <= 1; i++) {
-        const normalRow = document.createElement('tr');
-        normalRow.className = 'normal-row';
-        for (let j = 0; j < 8; j++) {
-            const newCell = document.createElement('td');
-            newCell.textContent = `Normal Row ${i}.1 - ${j + 1}`;
+    // Create a new normal row
+    const normalRow = document.createElement('tr');
+    normalRow.className = 'normal-row';
 
-            if (j === 0) {
-                // Create a small "+" button inside the first cell
-                const smallButton = document.createElement('button');
-                smallButton.textContent = '+';
-                smallButton.className = 'small-btn';
-                smallButton.onclick = (event) => {
-                    event.stopPropagation(); // Prevent triggering cell click event
-                    createSubRows(newCell, 1); // This will create sub-row 1.1
-                };
+    for (let j = 0; j < 8; j++) {
+        const newCell = document.createElement('td');
+        newCell.textContent = `Normal Row - ${j + 1}`;
 
-                newCell.appendChild(smallButton);
-                newCell.onclick = () => toggleSubRows(newCell, 1);
-            }
+        if (j === 0) {
+            // Create a small "+" button inside the first cell
+            const smallButton = document.createElement('button');
+            smallButton.textContent = '+';
+            smallButton.className = 'small-btn';
+            smallButton.onclick = (event) => {
+                event.stopPropagation(); // Prevent triggering cell click event
+                createSubRows(newCell, 1); // This will create sub-row 1.1
+            };
 
-            normalRow.appendChild(newCell);
+            newCell.appendChild(smallButton);
+            newCell.onclick = () => toggleSubRows(newCell, 1);
         }
-        normalRows.push(normalRow);
+
+        normalRow.appendChild(newCell);
     }
 
-    // Insert the new rows after the current row
-    currentRow.insertAdjacentElement('afterend', normalRows[0]);
-    currentRow.insertAdjacentElement('afterend', normalRows[1]);
-
-    // Create and add the button for creating a new normal row
-    const addRowButtonRow = document.createElement('tr');
-    const addRowButtonCell = document.createElement('td');
-    addRowButtonCell.colSpan = 8;
-
-    // const addRowButton = document.createElement('button');
-    // addRowButton.textContent = 'Add New Normal Row';
-    // addRowButton.onclick = () => createNormalRow3(normalRows[1]);
-
-    addRowButtonCell.appendChild(addRowButton);
-    addRowButtonRow.appendChild(addRowButtonCell);
-
-    // Insert the button row immediately after the last of the new rows
-    normalRows[1].insertAdjacentElement('afterend', addRowButtonRow);
+    // Insert the new row after the current row
+    currentRow.insertAdjacentElement('afterend', normalRow);
 }
+
 
 // function createnormalrow_2(event) {
 //     event.stopPropagation(); // Prevent the click event from bubbling up to the cell
@@ -564,4 +511,4 @@ function createSubRowsButtonClick(row, level) {
     createSubRows(row.querySelector('td:first-child'), level);
 }
 
-// read this i ll give you promt
+// read this i ll give you promt give ful corect codfe

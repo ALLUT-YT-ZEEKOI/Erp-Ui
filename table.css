@@ -384,6 +384,9 @@ button {
     margin-right: 8px;
 }
 
+.image_excel_1 {
+    cursor: pointer;
+}
 
 .toggle-button {
     width: 42px;
