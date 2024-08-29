@@ -1246,8 +1246,8 @@ textarea {
     width: 100%;
     padding: 10px;
     background: #F1F1F1;
-    /* position: fixed;
-    bottom: 0px; */
+    position: fixed;
+    bottom: 0px;
     z-index: 1000px;
 }
 
