@@ -72,8 +72,8 @@ button {
 .normal-row td:first-child,
 .sub-row td:first-child {
     padding-left: 30px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -82,8 +82,8 @@ button {
 
 .sub-row.level-1 td:first-child {
     padding-left: 60px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -92,8 +92,8 @@ button {
 
 .sub-row.level-2 td:first-child {
     padding-left: 90px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -102,8 +102,8 @@ button {
 
 .sub-row.level-3 td:first-child {
     padding-left: 120px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -112,8 +112,8 @@ button {
 
 .sub-row.level-4 td:first-child {
     padding-left: 150px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -122,8 +122,8 @@ button {
 
 .sub-row.level-5 td:first-child {
     padding-left: 180px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -132,8 +132,8 @@ button {
 
 .sub-row.level-6 td:first-child {
     padding-left: 210px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -142,8 +142,8 @@ button {
 
 .sub-row.level-7 td:first-child {
     padding-left: 230px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -152,8 +152,8 @@ button {
 
 .sub-row.level-8 td:first-child {
     padding-left: 260px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -162,8 +162,8 @@ button {
 
 .sub-row.level-9 td:first-child {
     padding-left: 290px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -172,8 +172,8 @@ button {
 
 .sub-row.level-10 td:first-child {
     padding-left: 320px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -182,8 +182,8 @@ button {
 
 .sub-row.level-11 td:first-child {
     padding-left: 350px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -192,8 +192,8 @@ button {
 
 .sub-row.level-12 td:first-child {
     padding-left: 380px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -202,8 +202,8 @@ button {
 
 .sub-row.level-13 td:first-child {
     padding-left: 410px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -212,8 +212,8 @@ button {
 
 .sub-row.level-14 td:first-child {
     padding-left: 440px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -222,8 +222,8 @@ button {
 
 .sub-row.level-15 td:first-child {
     padding-left: 470px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -232,8 +232,8 @@ button {
 
 .sub-row.level-16 td:first-child {
     padding-left: 500px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -242,8 +242,8 @@ button {
 
 .sub-row.level-17 td:first-child {
     padding-left: 510px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: 0px;
+    padding-bottom: 0px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
@@ -438,4 +438,27 @@ input.input-field.cell-input-tag:focus {
     /* Remove the border when the input field is focused */
     outline: none;
     /* Ensure no outline appears when focused */
+}
+
+/* Hide the button by default */
+.cell-content .show-btn {
+    display: none;
+    position: absolute;
+    left: -21px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: blue;
+    background: transparent;
+    width: 0px;
+    font-size: 24px;
+}
+
+/* Show the button when hovering over the row */
+.normal-row {
+    position: relative;
+    /* Create a positioning context for the button */
+}
+
+.normal-row:hover .show-btn {
+    display: block;
 }
