@@ -177,7 +177,6 @@ function toggleRows(cell) {
         createNormalRow(cell); // Create the first row (4-2)
     }
 }
-
 function createNormalRow(cell) {
     const currentRow = cell.parentElement;
 
@@ -207,6 +206,11 @@ function createNormalRow(cell) {
                 // Find the first cell of the current row to use as the reference for creating sub-rows
                 const cell = event.target.closest('td');
                 createSubRows(cell, 1); // This will create sub-row 1.1
+
+                // After creating sub-rows, toggle the icon to down
+                const iconElement = cell.querySelector('i');
+                iconElement.classList.remove('bi-caret-right-fill');
+                iconElement.classList.add('bi-caret-down-fill');
             };
 
             // Append the button to the container
@@ -240,7 +244,6 @@ function createnormalrow_2(event) {
 
 
 let nextId = 1; // A global variable to keep track of the next available ID
-
 function toggleSubRows(cell, level) {
     console.log("click");
     const currentRow = cell.parentElement;
@@ -263,20 +266,21 @@ function toggleSubRows(cell, level) {
     if (isCollapsed) {
         iconElement.classList.remove('bi-caret-right-fill');
         iconElement.classList.add('bi-caret-down-fill');
+
         // Show the child rows
         nextRows.forEach(row => {
             row.classList.remove('hidden');
             // Ensure the row's sub-rows are also shown
-            toggleAllDescendantRows(row);
+            toggleAllDescendantRows(row); // Show all descendants
         });
     } else {
         iconElement.classList.remove('bi-caret-down-fill');
         iconElement.classList.add('bi-caret-right-fill');
+
         // Hide the child rows
         nextRows.forEach(row => {
             row.classList.add('hidden');
-            // Ensure all descendant rows are hidden
-            toggleAllDescendantRows(row);
+            toggleAllDescendantRows(row); // Ensure all descendants are hidden
         });
     }
 }
@@ -320,7 +324,6 @@ function toggleSubRows(cell, level) {
 //     }
 // }
 
-
 function toggleAllDescendantRows(row) {
     let nextRow = row.nextElementSibling;
     const parentId = row.getAttribute('data-id');
@@ -332,8 +335,7 @@ function toggleAllDescendantRows(row) {
         }
         nextRow = nextRow.nextElementSibling;
     }
-}
-function createSubRows(cell, level) {
+} function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
     const currentRow = cell.parentElement;
@@ -354,7 +356,7 @@ function createSubRows(cell, level) {
                 <i class="bi bi-caret-right-fill"></i> Sub-row ${level}.${i + 1}
             `;
 
-            // Create and add the small button for creating sub-rows
+            // Create and add the small button
             const smallButton = document.createElement('button');
             smallButton.textContent = '+';
             smallButton.className = 'small-btnn';
@@ -374,7 +376,6 @@ function createSubRows(cell, level) {
     }
 
     currentRow.insertAdjacentElement('afterend', newRow);
-    addOrReplaceButton(newRow, level);
 }
 smallButton.onclick = (event) => {
     event.stopPropagation();
