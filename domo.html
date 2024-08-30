@@ -4,57 +4,113 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toggle Example</title>
+    <title>Context Menu Example</title>
     <style>
-        .customer-details-main-container_2 {
-            overflow: hidden;
-            max-height: 0;
-            /* Start with hidden state */
-            transition: max-height 0.5s ease-out;
-            /* Adjust timing for slow motion effect */
+        .context-menu {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
         }
 
-        .customer-details-main-container_2.show {
-            max-height: 500px;
-            /* Set to a value large enough to fit your content */
+        .context-menu ul {
+            list-style-type: none;
+            padding: 5px;
+            margin: 0;
         }
 
-        .drop_one {
+        .context-menu li {
+            padding: 8px 12px;
             cursor: pointer;
-            margin: 10px;
-            padding: 10px;
-            background-color: #ddd;
+        }
+
+        .context-menu li:hover {
+            background-color: #f0f0f0;
         }
     </style>
 </head>
 
 <body>
 
-    <div class="drop_one" onclick="show_address_details();">Drop One</div>
-    <div class="drop_one" onclick="show_address_details();">Drop One</div>
+    <table id="myTable" border="1">
+        <thead>
+            <tr>
+                <th><span class="table-head">Product</span>
+                    <div class="resizer"></div>
+                </th>
+                <th><span class="table-head">Qty</span>
+                    <div class="resizer"></div>
+                </th>
+                <th><span class="table-head">Remarks</span>
+                    <div class="resizer"></div>
+                </th>
+                <th><span class="table-head">Unit Price</span>
+                    <div class="resizer"></div>
+                </th>
+                <th><span class="table-head">Discount</span>
+                    <div class="resizer"></div>
+                </th>
+                <th><span class="table-head">Tax</span>
+                    <div class="resizer"></div>
+                </th>
+                <th><span class="table-head">Price inc.tax</span>
+                    <div class="resizer"></div>
+                </th>
+                <th><span class="table-head">Subtotal</span>
+                    <div class="resizer"></div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Table rows go here -->
+        </tbody>
+    </table>
 
-    <!-- showing details -->
-    <div id="customer-details-main-container_2" class="customer-details-main-container_2">
-        <p>Data one</p>
-        <p>Data two</p>
-        <p>Data three</p>
+    <div id="contextMenu" class="context-menu" style="display: none;">
+        <ul>
+            <li onclick="action1()">Action 1</li>
+            <li onclick="action2()">Action 2</li>
+            <li onclick="action3()">Action 3</li>
+        </ul>
     </div>
 
     <script>
-        function show_address_details() {
-            var detailsContainer = document.getElementById('customer-details-main-container_2');
-            if (detailsContainer.classList.contains('show')) {
-                detailsContainer.classList.remove('show');
-            } else {
-                // Set max-height to auto for proper calculation
-                detailsContainer.style.maxHeight = detailsContainer.scrollHeight + 'px';
-                detailsContainer.classList.add('show');
+        document.addEventListener('DOMContentLoaded', function () {
+            const table = document.getElementById('myTable');
+            const contextMenu = document.getElementById('contextMenu');
 
-                // Reset max-height after transition ends to keep the container's height auto-adjusted
-                detailsContainer.addEventListener('transitionend', function () {
-                    detailsContainer.style.maxHeight = 'none';
-                }, { once: true });
-            }
+            table.addEventListener('contextmenu', function (event) {
+                event.preventDefault(); // Prevent the default context menu from appearing
+
+                // Get the target column
+                const targetCell = event.target.closest('th, td');
+                if (targetCell) {
+                    // Get the position of the mouse click
+                    const rect = targetCell.getBoundingClientRect();
+                    contextMenu.style.top = `${rect.top + window.scrollY}px`;
+                    contextMenu.style.left = `${rect.right + window.scrollX}px`;
+                    contextMenu.style.display = 'block';
+                }
+            });
+
+            // Hide the context menu when clicking elsewhere
+            document.addEventListener('click', function () {
+                contextMenu.style.display = 'none';
+            });
+        });
+
+        // Example actions for the context menu
+        function action1() {
+            alert('Action 1 clicked');
+        }
+
+        function action2() {
+            alert('Action 2 clicked');
+        }
+
+        function action3() {
+            alert('Action 3 clicked');
         }
     </script>
 

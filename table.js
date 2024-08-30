@@ -284,45 +284,6 @@ function toggleSubRows(cell, level) {
         });
     }
 }
-// function toggleSubRows(cell, level) {
-//     console.log("click");
-//     const currentRow = cell.parentElement;
-//     const nextRows = [];
-//     const parentId = currentRow.getAttribute('data-id');
-
-//     let nextSibling = currentRow.nextElementSibling;
-//     while (nextSibling && nextSibling.classList.contains('sub-row')) {
-//         if (nextSibling.getAttribute('data-parent') === parentId) {
-//             nextRows.push(nextSibling);
-//         }
-//         nextSibling = nextSibling.nextElementSibling;
-//     }
-
-//     // Update the icon immediately when clicked
-//     const iconElement = cell.querySelector('i');
-//     const isCollapsed = nextRows.length > 0 && nextRows[0].classList.contains('hidden');
-
-//     // Toggle the icon based on the current state
-//     if (isCollapsed) {
-//         iconElement.classList.remove('bi-caret-right-fill');
-//         iconElement.classList.add('bi-caret-down-fill');
-//         // Show the child rows
-//         nextRows.forEach(row => {
-//             row.classList.remove('hidden');
-//             // Ensure the row's sub-rows are also shown
-//             toggleAllDescendantRows(row);
-//         });
-//     } else {
-//         iconElement.classList.remove('bi-caret-down-fill');
-//         iconElement.classList.add('bi-caret-right-fill');
-//         // Hide the child rows
-//         nextRows.forEach(row => {
-//             row.classList.add('hidden');
-//             // Ensure all descendant rows are hidden
-//             toggleAllDescendantRows(row);
-//         });
-//     }
-// }
 
 function toggleAllDescendantRows(row) {
     let nextRow = row.nextElementSibling;
@@ -335,7 +296,9 @@ function toggleAllDescendantRows(row) {
         }
         nextRow = nextRow.nextElementSibling;
     }
-} function createSubRows(cell, level) {
+}
+
+function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
     const currentRow = cell.parentElement;
