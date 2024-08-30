@@ -11,7 +11,7 @@ table {
 
 th,
 td {
-    border: 1px solid #ddd;
+    border: 1px solid #c51515;
     /* padding: 8px; */
     text-align: left;
     position: relative;
@@ -37,6 +37,7 @@ th {
     background-color: #f2f2f2;
     position: relative;
 }
+
 
 .resizer {
     width: 5px;
