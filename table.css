@@ -344,40 +344,48 @@ button {
     word-wrap: break-word;
 }
 
-
 .data1-1 {
     padding-left: 8px;
     border-top: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
     border-left: 1px solid #dddddd00;
-    /* padding: 8px; */
     text-align: left;
     position: relative;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    /* width: 150px; */
     font-size: 14px;
     font-family: sans-serif;
-    color: '#1E1E1E';
-
-
+    color: #1E1E1E;
     font-weight: 600;
 }
 
-
-
-
 .data-1-1_btn {
-    background-color: #ffffff00;
+    background-color: transparent;
     color: black;
     line-height: 0px;
     font-size: 18px;
+    position: absolute;
+    /* Positioning the button absolutely */
+    top: 50%;
+    /* Center vertically */
+    left: 100%;
+    /* Position to the right of the cell */
+    transform: translateY(-50%);
+    /* Adjust for vertical centering */
+    display: none;
+    /* Hide by default */
 }
 
-.data-1-1_btn :hover {
+.data1-1:hover .data-1-1_btn {
+    display: block;
+    /* Show button on hover */
+}
+
+.data-1-1_btn:hover {
     background-color: white;
+    /* Change background on hover */
 }
 
 .image_excel {
