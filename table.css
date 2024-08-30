@@ -486,3 +486,43 @@ input.input-field.cell-input-tag:focus {
 .normal-row:hover .show-btn {
     display: block;
 }
+
+
+
+/* frozen */
+
+.context-menu {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 1;
+}
+
+.context-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.context-menu li {
+    padding: 5px 0;
+    cursor: pointer;
+}
+
+.context-menu li:hover {
+    background-color: #e6e6e6;
+}
+
+.frozen {
+    /* border: 2px solid red; */
+    position: sticky;
+    left: 0;
+    background-color: #ffffff;
+    /* border: 1px solid black; */
+    /* Optional: background color for frozen column */
+    z-index: 10;
+    /* Ensure it stays above other content */
+
+}

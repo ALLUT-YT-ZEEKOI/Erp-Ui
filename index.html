@@ -716,6 +716,11 @@
 
     </div>
 
+    <div class="context-menu" id="contextMenu">
+        <ul>
+            <li onclick="freezeColumn()">Freeze Column</li>
+        </ul>
+    </div>
 
 
     <!-- Boostrap link -->
@@ -746,38 +751,73 @@
         })
     </script>
     <script>
+        const MIN_WIDTH = 300; // Minimum width for the columns
 
         document.querySelectorAll('.resizer').forEach(resizer => {
-            resizer.addEventListener('mousedown', (e) => {
+            resizer.addEventListener('mousedown', function (e) {
                 e.preventDefault();
+                document.addEventListener('mousemove', onMouseMove);
+                document.addEventListener('mouseup', onMouseUp);
+
                 const th = resizer.parentElement;
-                const columnIndex = Array.from(th.parentElement.children).indexOf(th);
-                const table = th.closest('table');
-                const initialX = e.pageX;
-                const initialWidth = th.offsetWidth;
+                const startOffset = th.offsetWidth - e.pageX;
 
-                const tableRows = Array.from(table.querySelectorAll('tr')).map(row => row.children[columnIndex]);
-
-                function resizeColumn(e) {
-                    const diffX = e.pageX - initialX;
-                    const newWidth = Math.max(initialWidth + diffX, 50); // Minimum width for readability
-                    th.style.width = `${newWidth}px`;
-                    tableRows.forEach(cell => {
-                        cell.style.width = `${newWidth}px`;
-                    });
+                function onMouseMove(e) {
+                    const newWidth = startOffset + e.pageX;
+                    // Set the column width, ensuring it does not go below MIN_WIDTH
+                    th.style.width = Math.max(newWidth, MIN_WIDTH) + 'px';
                 }
 
-                function stopResize() {
-                    document.removeEventListener('mousemove', resizeColumn);
-                    document.removeEventListener('mouseup', stopResize);
+                function onMouseUp() {
+                    document.removeEventListener('mousemove', onMouseMove);
+                    document.removeEventListener('mouseup', onMouseUp);
                 }
-
-                document.addEventListener('mousemove', resizeColumn);
-                document.addEventListener('mouseup', stopResize);
             });
         });
 
+        document.querySelectorAll('th').forEach((th) => {
+            th.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                const contextMenu = document.getElementById('contextMenu');
+                contextMenu.style.display = 'block';
+                contextMenu.style.left = e.pageX + 'px';
+                contextMenu.style.top = e.pageY + 'px';
+                contextMenu.dataset.columnIndex = Array.from(th.parentNode.children).indexOf(th);
+            });
+        });
 
+        document.addEventListener('click', (e) => {
+            const contextMenu = document.getElementById('contextMenu');
+            if (e.target !== contextMenu && !contextMenu.contains(e.target)) {
+                contextMenu.style.display = 'none';
+            }
+        });
+
+        function freezeColumn() {
+            const contextMenu = document.getElementById('contextMenu');
+            const columnIndex = contextMenu.dataset.columnIndex;
+            const table = document.getElementById('myTable');
+
+            // Freeze all columns from the start to the selected column
+            for (let i = 0; i <= columnIndex; i++) {
+                const th = table.getElementsByTagName('th')[i];
+                th.classList.add('frozen');
+                th.style.position = 'sticky';
+                th.style.left = `${i * 150}px`; // Adjust left position based on column width
+                th.style.zIndex = '10';
+
+                // Apply sticky position to all td elements in the column
+                Array.from(table.querySelectorAll(`tr td:nth-child(${i + 1})`)).forEach(td => {
+                    td.classList.add('frozen');
+                    td.style.position = 'sticky';
+                    td.style.left = `${i * 150}px`; // Adjust left position based on column width
+                    td.style.zIndex = '1';
+                });
+            }
+
+            // Hide the context menu after selection
+            contextMenu.style.display = 'none';
+        }
 
 
 

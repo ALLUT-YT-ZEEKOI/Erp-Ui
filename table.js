@@ -177,6 +177,7 @@ function toggleRows(cell) {
         createNormalRow(cell); // Create the first row (4-2)
     }
 }
+
 function createNormalRow(cell) {
     const currentRow = cell.parentElement;
 
@@ -345,3 +346,7 @@ smallButton.onclick = (event) => {
     createSubRows(newCell, level + 1);
 };
 
+
+
+
+// freez optionsssssssssss
