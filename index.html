@@ -400,42 +400,42 @@
                                 <table id="myTable" border="1">
                                     <thead>
                                         <tr>
-                                            <th> <span class="table-head">Product
+                                            <th style="width: 300px;"> <span class="table-head">Product
 
                                                 </span>
                                                 <div class="resizer"></div>
                                             </th>
-                                            <th> <span class="table-head">Qty
+                                            <th style="width: 120px;"> <span class="table-head">Qty
 
                                                 </span>
                                                 <div class="resizer"></div>
                                             </th>
-                                            <th><span class="table-head">Remarks
+                                            <th style="width: 180px;"><span class="table-head">Remarks
 
                                                 </span>
                                                 <div class="resizer"></div>
                                             </th>
-                                            <th><span class="table-head">Unit Price
+                                            <th style="width: 180px;"><span class="table-head">Unit Price
 
                                                 </span>
                                                 <div class="resizer"></div>
                                             </th>
-                                            <th><span class="table-head">Discount
+                                            <th style="width:250px;"><span class="table-head">Discount
 
                                                 </span>
                                                 <div class="resizer"></div>
                                             </th>
-                                            <th><span class="table-head">Tax
+                                            <th style="width: 250px;"><span class="table-head">Tax
 
                                                 </span>
                                                 <div class="resizer"></div>
                                             </th>
-                                            <th><span class="table-head">Price inc.tax
+                                            <th style="width: 180px;"><span class="table-head">Price inc.tax
 
                                                 </span>
                                                 <div class="resizer"></div>
                                             </th>
-                                            <th><span class="table-head">Subtotal
+                                            <th style="width: 180px;"><span class="table-head">Subtotal
 
                                                 </span>
                                                 <div class="resizer"></div>
@@ -775,6 +775,9 @@
             });
         });
 
+
+
+
         document.querySelectorAll('th').forEach((th) => {
             th.addEventListener('contextmenu', (e) => {
                 e.preventDefault();
@@ -786,12 +789,16 @@
             });
         });
 
+
         document.addEventListener('click', (e) => {
             const contextMenu = document.getElementById('contextMenu');
             if (e.target !== contextMenu && !contextMenu.contains(e.target)) {
                 contextMenu.style.display = 'none';
             }
         });
+
+
+
 
         function freezeColumn() {
             const contextMenu = document.getElementById('contextMenu');
