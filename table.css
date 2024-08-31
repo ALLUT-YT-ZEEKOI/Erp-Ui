@@ -277,9 +277,9 @@ button {
     display: none;
 }
 
-.dragging {
+/* .dragging {
     opacity: 0.5;
-}
+} */
 
 .drop-indicator {
     border: 2px solid #4CAF50;
@@ -534,4 +534,40 @@ input.input-field.cell-input-tag:focus {
     z-index: 10;
     /* Ensure it stays above other content */
 
+}
+.createrowinput{
+    width: 100%;
+    /* height: 100%; */
+    padding: 0px;
+    margin: 0px;
+    border: #ffffff;
+    outline: none;
+}
+.createrowinput :focus{
+    border: none;
+    /* Remove the border when the input field is focused */
+    outline: none;
+}
+button.decrement-btn {
+    background: blue;
+    color: white;
+    /* width: 48px; */
+    /* height: 18px; */
+    line-height: 0px;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 8px;
+    margin-left: 8px;
+    
+}
+.increment-btn{
+    background: blue;
+    color: white;
+    /* width: 48px; */
+    /* height: 18px; */
+    line-height: 0px;
+    border-radius: 4px;
+    padding: 10px;
+    margin-right: 8px;
+    margin-left: 8px;
 }

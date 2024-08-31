@@ -59,7 +59,6 @@ function resetDropIndicator() {
 }
 
 document.addEventListener('dragend', resetDropIndicator);
-
 function createMainDataRow() {
     const tableBody = document.querySelector('#myTable tbody');
     const newMainDataRow = document.createElement('tr');
@@ -102,6 +101,31 @@ function createMainDataRow() {
                     toggleRows(newCell); // Ensure toggleRows function is defined
                 });
             }
+        } else if (i === 1) {
+            newCell.innerHTML = `
+                <div class="button-counter">
+                    <button class="decrement-btn">-</button>
+                    <span class="count-value">0</span>
+                    <button class="increment-btn">+</button>
+                </div>
+            `;
+
+            // Add event listeners for increment and decrement buttons
+            const decrementBtn = newCell.querySelector('.decrement-btn');
+            const incrementBtn = newCell.querySelector('.increment-btn');
+            const countValue = newCell.querySelector('.count-value');
+
+            decrementBtn.addEventListener('click', () => {
+                let count = parseInt(countValue.textContent);
+                if (count > 0) {
+                    countValue.textContent = count - 1;
+                }
+            });
+
+            incrementBtn.addEventListener('click', () => {
+                let count = parseInt(countValue.textContent);
+                countValue.textContent = count + 1;
+            });
         } else {
             newCell.innerHTML = `
                 <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
@@ -125,7 +149,6 @@ function createMainDataRow() {
     newMainDataRow.addEventListener('dragover', allowDrop);
     newMainDataRow.addEventListener('drop', drop);
 }
-
 // Initially show 2 rows when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     createMainDataRow();
@@ -177,7 +200,6 @@ function toggleRows(cell) {
         createNormalRow(cell); // Create the first row (4-2)
     }
 }
-
 function createNormalRow(cell) {
     const currentRow = cell.parentElement;
 
@@ -189,13 +211,25 @@ function createNormalRow(cell) {
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.placeholder = `Enter text for cell ${i + 1}`;
+        inputField.className = 'createrowinput'; // Set the class name for the input field
+
+        // If it's the first cell, add the icon and the "+" button
         if (i === 0) {
             // Create container for cell content and button
             const cellContent = document.createElement('div');
             cellContent.className = 'cell-content';
 
-            // Set innerHTML for the first cell to include the icon
-            cellContent.innerHTML = `<i class="bi bi-caret-right-fill"></i> Normal Row ${lastRowIndex} - ${i + 1}`;
+            // Create the icon element
+            const iconElement = document.createElement('i');
+            iconElement.className = 'bi bi-caret-right-fill';
+
+            // Stop event propagation when clicking on the input field
+            inputField.onclick = (event) => {
+                event.stopPropagation();
+            };
 
             // Create a small "+" button inside the first cell
             const smallButton = document.createElement('button');
@@ -214,15 +248,44 @@ function createNormalRow(cell) {
                 iconElement.classList.add('bi-caret-down-fill');
             };
 
-            // Append the button to the container
+            // Append the icon and input field to the container
+            cellContent.appendChild(iconElement);
+            cellContent.appendChild(inputField);
             cellContent.appendChild(smallButton);
             newCell.appendChild(cellContent);
 
             // Make the first cell clickable to toggle sub-rows
             newCell.onclick = () => toggleSubRows(newCell, 1);
+        } else if (i === 1) {
+            newCell.innerHTML = `
+                <div class="button-counter">
+                    <button class="decrement-btn">-</button>
+                    <span class="count-value">0</span>
+                    <button class="increment-btn">+</button>
+                </div>
+            `;
+
+            // Add event listeners for increment and decrement buttons
+            const decrementBtn = newCell.querySelector('.decrement-btn');
+            const incrementBtn = newCell.querySelector('.increment-btn');
+            const countValue = newCell.querySelector('.count-value');
+
+            decrementBtn.addEventListener('click', () => {
+                let count = parseInt(countValue.textContent);
+                if (count > 0) {
+                    countValue.textContent = count - 1;
+                }
+            });
+
+            incrementBtn.addEventListener('click', () => {
+                let count = parseInt(countValue.textContent);
+                countValue.textContent = count + 1;
+            });
         } else {
-            newCell.textContent = `Normal Row ${lastRowIndex} - ${i + 1}`;
+            // For other cells, just append the input field
+            newCell.appendChild(inputField);
         }
+        
         normalRow.appendChild(newCell);
     }
 
@@ -298,7 +361,6 @@ function toggleAllDescendantRows(row) {
         nextRow = nextRow.nextElementSibling;
     }
 }
-
 function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
@@ -310,15 +372,24 @@ function createSubRows(cell, level) {
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.placeholder = `Enter text for sub-row ${level}.${i + 1}`;
+        inputField.className = 'createrowinput'; // Set the class name for the input field
+
         if (i === 0) {
             // Create container for cell content and button
             const cellContent = document.createElement('div');
             cellContent.className = 'cell-content';
 
-            // Set innerHTML for the first cell to include the icon
-            cellContent.innerHTML = `
-                <i class="bi bi-caret-right-fill"></i> Sub-row ${level}.${i + 1}
-            `;
+            // Create the icon element
+            const iconElement = document.createElement('i');
+            iconElement.className = 'bi bi-caret-right-fill';
+
+            // Stop event propagation when clicking on the input field
+            inputField.onclick = (event) => {
+                event.stopPropagation();
+            };
 
             // Create and add the small button
             const smallButton = document.createElement('button');
@@ -328,14 +399,45 @@ function createSubRows(cell, level) {
                 event.stopPropagation();
                 createSubRows(newCell, level + 1);
             };
+
+            // Append the icon, input field, and button to the container
+            cellContent.appendChild(iconElement);
+            cellContent.appendChild(inputField);
             cellContent.appendChild(smallButton);
             newCell.appendChild(cellContent);
 
             // Make the first cell clickable to toggle sub-rows
             newCell.onclick = () => toggleSubRows(newCell, level + 1);
-        } else {
-            newCell.textContent = `Sub-row ${level}.${i + 1}`;
+        }else if (i === 1) {
+            newCell.innerHTML = `
+                <div class="button-counter">
+                    <button class="decrement-btn">-</button>
+                    <span class="count-value">0</span>
+                    <button class="increment-btn">+</button>
+                </div>
+            `;
+
+            // Add event listeners for increment and decrement buttons
+            const decrementBtn = newCell.querySelector('.decrement-btn');
+            const incrementBtn = newCell.querySelector('.increment-btn');
+            const countValue = newCell.querySelector('.count-value');
+
+            decrementBtn.addEventListener('click', () => {
+                let count = parseInt(countValue.textContent);
+                if (count > 0) {
+                    countValue.textContent = count - 1;
+                }
+            });
+
+            incrementBtn.addEventListener('click', () => {
+                let count = parseInt(countValue.textContent);
+                countValue.textContent = count + 1;
+            });
+        }  else {
+            // For other cells, just append the input field
+            newCell.appendChild(inputField);
         }
+        
         newRow.appendChild(newCell);
     }
 
