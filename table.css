@@ -626,3 +626,8 @@ button.decrement-btn {
 .sub-row:hover .small-btnn {
     display: inline-block; /* Show the button on hover */
 }
+
+.button-counter{
+    display: flex;
+    justify-content: space-between;
+}
