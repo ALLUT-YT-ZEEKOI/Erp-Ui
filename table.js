@@ -59,6 +59,7 @@ function resetDropIndicator() {
 }
 
 document.addEventListener('dragend', resetDropIndicator);
+
 function createMainDataRow() {
     const tableBody = document.querySelector('#myTable tbody');
     const newMainDataRow = document.createElement('tr');
@@ -67,6 +68,11 @@ function createMainDataRow() {
     newMainDataRow.ondragstart = drag;
     newMainDataRow.ondragover = allowDrop;
     newMainDataRow.ondrop = drop;
+
+    newMainDataRow.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent the default context menu
+        showContextMenu(event, newMainDataRow);
+    });
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
@@ -140,6 +146,7 @@ function createMainDataRow() {
         }
 
         newMainDataRow.appendChild(newCell);
+        tableBody.appendChild(newMainDataRow);
     }
 
     tableBody.appendChild(newMainDataRow);
@@ -155,6 +162,12 @@ document.addEventListener('DOMContentLoaded', () => {
     createMainDataRow();
 });
 
+
+// Hide context menu on click elsewhere
+document.addEventListener('click', function() {
+    const contextMenu = document.getElementById('contextMenu');
+    contextMenu.style.display = 'none';
+});
 
 // Ensure drag events apply to entire sections
 document.querySelectorAll('.main-data-row').forEach(row => {
@@ -200,6 +213,7 @@ function toggleRows(cell) {
         createNormalRow(cell); // Create the first row (4-2)
     }
 }
+
 function createNormalRow(cell) {
     const currentRow = cell.parentElement;
 
@@ -208,6 +222,10 @@ function createNormalRow(cell) {
     normalRow.className = 'normal-row';
     normalRow.style.position = 'relative';
     normalRow.setAttribute('data-id', nextId++); // Assign a unique ID to the normal row
+    normalRow.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent the default context menu
+        showContextMenu(event, normalRow);
+    });
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
@@ -291,6 +309,7 @@ function createNormalRow(cell) {
 
     // Insert the new row after the current row
     currentRow.insertAdjacentElement('afterend', normalRow);
+    
 
     // Increment lastRowIndex to ensure the next row has the correct numbering
     lastRowIndex++;
@@ -361,6 +380,7 @@ function toggleAllDescendantRows(row) {
         nextRow = nextRow.nextElementSibling;
     }
 }
+
 function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
@@ -369,6 +389,12 @@ function createSubRows(cell, level) {
     newRow.className = `sub-row level-${level}`;
     newRow.setAttribute('data-id', nextId++);
     newRow.setAttribute('data-parent', currentRow.getAttribute('data-id'));
+
+    // Add right-click context menu event
+    newRow.addEventListener('contextmenu', function(event) {
+        event.preventDefault(); // Prevent the default context menu
+        showContextMenu(event, newRow);
+    });
 
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
@@ -452,3 +478,30 @@ smallButton.onclick = (event) => {
 
 
 // freez optionsssssssssss
+function showContextMenu(event, row) {
+    const contextMenu = document.getElementById('contextMenu_1');
+    contextMenu.style.display = 'block';
+    contextMenu.style.left = `${event.pageX}px`;
+    contextMenu.style.top = `${event.pageY}px`;
+
+    // Add event listeners for menu items
+    document.getElementById('deleteRow').onclick = function() {
+        deleteRowAndChildren(row); // Call the delete function
+        contextMenu.style.display = 'none'; // Hide the context menu
+    };
+
+    document.getElementById('addClass').onclick = function() {
+        row.classList.add('new-class'); // Add a new class to the row
+        contextMenu.style.display = 'none'; // Hide the context menu
+    };
+}
+function deleteRowAndChildren(row) {
+    // Remove the row
+    row.remove();
+
+    // Find and remove all normal rows associated with this main row
+    const normalRows = document.querySelectorAll(`tr[data-parent="${row.getAttribute('data-id')}"]`);
+    normalRows.forEach(normalRow => {
+        deleteRowAndChildren(normalRow); // Recursively delete each normal row
+    });
+}
