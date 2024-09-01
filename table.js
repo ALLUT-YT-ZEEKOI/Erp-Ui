@@ -80,6 +80,7 @@ function createMainDataRow() {
     newButtonCell.innerHTML = `
         <button onclick="createnormalrow_2(event)" class="data-1-1_btn" style="display: none;">
             <i class="bi bi-plus-lg"></i>
+            <i class="bi bi-list"></i>
         </button>
     `;
     newMainDataRow.appendChild(newButtonCell);

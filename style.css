@@ -1312,6 +1312,7 @@ td {
 
 }
 
+
 /* Custom Scrollbar */
 .scrollable-container::-webkit-scrollbar {
     width: 10px;
@@ -1348,7 +1349,8 @@ td i.bi {
 
 .cell-content {
     display: flex;
-    margin: 10px;
+   margin-top: 10px;
+   margin-bottom: 10px;
 }
 
 /* Hide the button by default */
@@ -1412,9 +1414,9 @@ td i.bi {
     /* Create a positioning context for the button */
 }
 
-/* .data1-1:hover .data-1-1_btn {
+.data1-1:hover .data-1-1_btn {
     display: block;
-} */
+}
 
 .add_the_main_row {
     background: transparent;
@@ -1446,3 +1448,7 @@ td i.bi {
     border-radius: 8px;
     display: none;
 }
+td{
+    border-left: none;
+}
+

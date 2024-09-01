@@ -400,12 +400,12 @@
                                 <table id="myTable" border="1">
                                     <thead>
                                         <tr>
-                                            <th style="width: 300px;"> <span class="table-head">sample
+                                            <th style="width: 75px; border-right: none;border-bottom: none;position: static;"> <span class="table-head">
 
                                             </span>
                                             <div class="resizer"></div>
                                         </th>
-                                            <th style="width: 300px;"> <span class="table-head">Product
+                                            <th style="width: 300px;border-left: none;"> <span class="table-head">Product
 
                                                 </span>
                                                 <div class="resizer"></div>
@@ -821,7 +821,7 @@
                 const th = table.getElementsByTagName('th')[i];
                 th.classList.add('frozen');
                 th.style.position = 'sticky';
-                th.style.left = `${i * 150}px`; // Adjust left position based on column width
+                th.style.left = `${i * 200}px`; // Adjust left position based on column width
                 th.style.zIndex = '10';
 
                 // Apply sticky position to all td elements in the column
@@ -841,6 +841,23 @@
 
     </script>
     <style>
+
+
+
+
+#myTable th,
+#myTable td {
+    padding: 10px; /* Padding for cells */
+    text-align: left; /* Align text to the left */
+}
+
+#myTable th:first-child,
+#myTable td:first-child {
+    position: sticky; /* Make the first column sticky */
+    left: -3px; /* Position it to the left */
+    background-color: white; /* Background color for the fixed column */
+    z-index: 10000000; /* Ensure it is above other content */
+}
         table {
             width: 50%;
             border-collapse: collapse;
@@ -850,6 +867,8 @@
 
         th,
         td {
+            border-right: none;
+            border-left: none;
             padding-left: 8px;
             border: 1px solid #ddd;
             /* padding: 8px; */
