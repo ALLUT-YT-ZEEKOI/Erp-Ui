@@ -1245,7 +1245,7 @@ textarea {
     background: #F1F1F1;
     position: fixed;
     bottom: 0px;
-    z-index: 1000px;
+    z-index: 1000;
 }
 
 .tootal {

@@ -786,78 +786,75 @@
             });
         });
 
+        document.addEventListener('DOMContentLoaded', () => {
+    const secondTh = document.querySelector('#myTable th:nth-child(2)');
+    const contextMenu = document.getElementById('contextMenu');
 
+    // Show context menu on right-click
+    secondTh.addEventListener('contextmenu', (event) => {
+        event.preventDefault(); // Prevent the default context menu
+        contextMenu.style.display = 'block';
+        contextMenu.style.left = `${event.pageX}px`;
+        contextMenu.style.top = `${event.pageY}px`;
+    });
 
+    // Hide context menu when clicking outside
+    document.addEventListener('click', () => {
+        contextMenu.style.display = 'none';
+    });
+});
 
-        document.querySelectorAll('th').forEach((th) => {
-            th.addEventListener('contextmenu', (e) => {
-                e.preventDefault();
-                const contextMenu = document.getElementById('contextMenu');
-                contextMenu.style.display = 'block';
-                contextMenu.style.left = e.pageX + 'px';
-                contextMenu.style.top = e.pageY + 'px';
-                contextMenu.dataset.columnIndex = Array.from(th.parentNode.children).indexOf(th);
-            });
+function freezeColumn() {
+    const contextMenu = document.getElementById('contextMenu');
+    const table = document.getElementById('myTable');
+
+    // Specify the number of columns to freeze (2 in this case)
+    const columnsToFreeze = 2;
+
+    // Freeze the specified columns
+    for (let i = 0; i < columnsToFreeze; i++) {
+        const th = table.getElementsByTagName('th')[i];
+        th.classList.add('frozen');
+        th.style.position = 'sticky';
+        th.style.left = `${i * 200}px`; // Adjust left position based on column width
+        th.style.zIndex = '10';
+
+        // Apply sticky position to all td elements in the column
+        Array.from(table.querySelectorAll(`tr td:nth-child(${i + 1})`)).forEach(td => {
+            td.classList.add('frozen');
+            td.style.position = 'sticky';
+            td.style.left = `${i * 200}px`; // Adjust left position based on column width
+            td.style.zIndex = '1';
         });
+    }
 
-
-        document.addEventListener('click', (e) => {
-            const contextMenu = document.getElementById('contextMenu');
-            if (e.target !== contextMenu && !contextMenu.contains(e.target)) {
-                contextMenu.style.display = 'none';
-            }
-        });
-
-
-
-
-        function freezeColumn() {
-            const contextMenu = document.getElementById('contextMenu');
-            const columnIndex = contextMenu.dataset.columnIndex;
-            const table = document.getElementById('myTable');
-
-            // Freeze all columns from the start to the selected column
-            for (let i = 0; i <= columnIndex; i++) {
-                const th = table.getElementsByTagName('th')[i];
-                th.classList.add('frozen');
-                th.style.position = 'sticky';
-                th.style.left = `${i * 200}px`; // Adjust left position based on column width
-                th.style.zIndex = '10';
-
-                // Apply sticky position to all td elements in the column
-                Array.from(table.querySelectorAll(`tr td:nth-child(${i + 1})`)).forEach(td => {
-                    td.classList.add('frozen');
-                    td.style.position = 'sticky';
-                    td.style.left = `${i * 150}px`; // Adjust left position based on column width
-                    td.style.zIndex = '1';
-                });
-            }
-
-            // Hide the context menu after selection
-            contextMenu.style.display = 'none';
-        }
-
-
-
+    // Hide the context menu after selection
+    contextMenu.style.display = 'none';
+}
     </script>
     <style>
-
-
+      
 
 
 #myTable th,
 #myTable td {
-    padding: 10px; /* Padding for cells */
-    text-align: left; /* Align text to the left */
+text-align: left; /* Align text to the left */
 }
 
-#myTable th:first-child,
+/* #myTable th:first-child,
 #myTable td:first-child {
-    position: sticky; /* Make the first column sticky */
-    left: -3px; /* Position it to the left */
-    background-color: white; /* Background color for the fixed column */
-    z-index: 10000000; /* Ensure it is above other content */
+    position: sticky; 
+    left: -3px; 
+    background-color: white; 
+    z-index: 10;
 }
+
+#myTable th {
+    position: sticky;
+    top: 0; 
+    background-color: white; 
+    z-index: 5; 
+} */
         table {
             width: 50%;
             border-collapse: collapse;
