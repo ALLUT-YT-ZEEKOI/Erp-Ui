@@ -1446,7 +1446,15 @@ td i.bi {
     background: #DBF0FF;
     padding: 1px;
     border-radius: 8px;
-    display: none;
+    display: none; /* Initially hidden */
+    opacity: 0; /* Start with opacity 0 for fade effect */
+    transition: opacity 0.5s ease, display 0s 0.5s; /* Fade in/out effect */
+}
+
+.address-details-dt.show {
+    display: block; /* Show the element */
+    opacity: 1; /* Fade in */
+    transition: opacity 0.5s ease; /* Fade in transition */
 }
 td{
     border-left: none;

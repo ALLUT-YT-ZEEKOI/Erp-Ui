@@ -110,3 +110,21 @@ function toggleButton(element) {
         element.style.backgroundColor = '#4CAF50';
     }
 }
+
+
+function show_address_details() {
+    const addressDetails = document.getElementById('address-details-dt');
+    
+    
+    if (addressDetails.classList.contains('show')) {
+        addressDetails.classList.remove('show'); 
+        setTimeout(() => {
+            addressDetails.style.display = 'none'; 
+        }, 500); 
+    } else {
+        addressDetails.style.display = 'block'; 
+        setTimeout(() => {
+            addressDetails.classList.add('show'); 
+        }, 10); 
+    }
+}
