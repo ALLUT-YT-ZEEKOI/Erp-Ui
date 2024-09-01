@@ -213,7 +213,6 @@ function toggleRows(cell) {
         createNormalRow(cell); // Create the first row (4-2)
     }
 }
-
 function createNormalRow(cell) {
     const currentRow = cell.parentElement;
 
@@ -222,6 +221,8 @@ function createNormalRow(cell) {
     normalRow.className = 'normal-row';
     normalRow.style.position = 'relative';
     normalRow.setAttribute('data-id', nextId++); // Assign a unique ID to the normal row
+    normalRow.setAttribute('data-parent', currentRow.getAttribute('data-id')); // Link to the main data row
+
     normalRow.addEventListener('contextmenu', function(event) {
         event.preventDefault(); // Prevent the default context menu
         showContextMenu(event, normalRow);
@@ -234,7 +235,6 @@ function createNormalRow(cell) {
         inputField.placeholder = `Enter text for cell ${i + 1}`;
         inputField.className = 'createrowinput'; // Set the class name for the input field
 
-        // If it's the first cell, add the icon and the "+" button
         if (i === 0) {
             // Create container for cell content and button
             const cellContent = document.createElement('div');
@@ -255,10 +255,7 @@ function createNormalRow(cell) {
             smallButton.className = 'show-btn';
             smallButton.onclick = (event) => {
                 event.stopPropagation();
-
-                // Find the first cell of the current row to use as the reference for creating sub-rows
-                const cell = event.target.closest('td');
-                createSubRows(cell, 1); // This will create sub-row 1.1
+                createSubRows(newCell, 1); // This will create sub-row 1.1
 
                 // After creating sub-rows, toggle the icon to down
                 const iconElement = cell.querySelector('i');
@@ -310,7 +307,6 @@ function createNormalRow(cell) {
     // Insert the new row after the current row
     currentRow.insertAdjacentElement('afterend', normalRow);
     
-
     // Increment lastRowIndex to ensure the next row has the correct numbering
     lastRowIndex++;
 }
@@ -380,7 +376,6 @@ function toggleAllDescendantRows(row) {
         nextRow = nextRow.nextElementSibling;
     }
 }
-
 function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
@@ -388,7 +383,7 @@ function createSubRows(cell, level) {
     const newRow = document.createElement('tr');
     newRow.className = `sub-row level-${level}`;
     newRow.setAttribute('data-id', nextId++);
-    newRow.setAttribute('data-parent', currentRow.getAttribute('data-id'));
+    newRow.setAttribute('data-parent', currentRow.getAttribute('data-id')); // Link to the normal row
 
     // Add right-click context menu event
     newRow.addEventListener('contextmenu', function(event) {
@@ -434,7 +429,7 @@ function createSubRows(cell, level) {
 
             // Make the first cell clickable to toggle sub-rows
             newCell.onclick = () => toggleSubRows(newCell, level + 1);
-        }else if (i === 1) {
+        } else if (i === 1) {
             newCell.innerHTML = `
                 <div class="button-counter">
                     <button class="decrement-btn">-</button>
@@ -459,7 +454,7 @@ function createSubRows(cell, level) {
                 let count = parseInt(countValue.textContent);
                 countValue.textContent = count + 1;
             });
-        }  else {
+        } else {
             // For other cells, just append the input field
             newCell.appendChild(inputField);
         }
@@ -467,6 +462,7 @@ function createSubRows(cell, level) {
         newRow.appendChild(newCell);
     }
 
+    // Insert the new row after the current row
     currentRow.insertAdjacentElement('afterend', newRow);
 }
 smallButton.onclick = (event) => {
