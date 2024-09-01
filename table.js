@@ -74,6 +74,16 @@ function createMainDataRow() {
         showContextMenu(event, newMainDataRow);
     });
 
+    // Create a new cell for the button
+    const newButtonCell = document.createElement('td');
+    newButtonCell.className = 'button-cell'; // Add a class for styling
+    newButtonCell.innerHTML = `
+        <button onclick="createnormalrow_2(event)" class="data-1-1_btn" style="display: none;">
+            <i class="bi bi-plus-lg"></i>
+        </button>
+    `;
+    newMainDataRow.appendChild(newButtonCell);
+
     for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
         const placeholderText = `Data ${i + 1}.1`;
@@ -83,9 +93,6 @@ function createMainDataRow() {
 
             newCell.innerHTML = `
                 <div class="cell-content">
-                    <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
-                        <i class="bi bi-plus-lg"></i>
-                    </button>
                     <div style="display: flex; align-items: center; margin-left:10px;">
                         <img src="assets/Vector (1).png" alt="" class="image_excel_1">
                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
@@ -146,7 +153,6 @@ function createMainDataRow() {
         }
 
         newMainDataRow.appendChild(newCell);
-        tableBody.appendChild(newMainDataRow);
     }
 
     tableBody.appendChild(newMainDataRow);
@@ -155,7 +161,119 @@ function createMainDataRow() {
     newMainDataRow.addEventListener('dragstart', drag);
     newMainDataRow.addEventListener('dragover', allowDrop);
     newMainDataRow.addEventListener('drop', drop);
+
+    // Show button on row hover
+    newMainDataRow.addEventListener('mouseenter', () => {
+        const button = newButtonCell.querySelector('.data-1-1_btn');
+        if (button) {
+            button.style.display = 'block'; // Show the button
+        }
+    });
+
+    newMainDataRow.addEventListener('mouseleave', () => {
+        const button = newButtonCell.querySelector('.data-1-1_btn');
+        if (button) {
+            button.style.display = 'none'; // Hide the button
+        }
+    });
 }
+
+// function createMainDataRow() {
+//     const tableBody = document.querySelector('#myTable tbody');
+//     const newMainDataRow = document.createElement('tr');
+//     newMainDataRow.className = 'main-data-row';
+//     newMainDataRow.draggable = true;
+//     newMainDataRow.ondragstart = drag;
+//     newMainDataRow.ondragover = allowDrop;
+//     newMainDataRow.ondrop = drop;
+
+//     newMainDataRow.addEventListener('contextmenu', function(event) {
+//         event.preventDefault(); // Prevent the default context menu
+//         showContextMenu(event, newMainDataRow);
+//     });
+
+//     for (let i = 0; i < 9; i++) {
+//         const newCell = document.createElement('td');
+//         const placeholderText = `Data ${i + 1}.1`;
+
+//         if (i === 0) {
+//             newCell.className = 'data1-1';
+
+//             newCell.innerHTML = `
+//                 <div class="cell-content">
+//                     <button onclick="createnormalrow_2(event)" class="data-1-1_btn">
+//                         <i class="bi bi-plus-lg"></i>
+//                     </button>
+//                     <div style="display: flex; align-items: center; margin-left:10px;">
+//                         <img src="assets/Vector (1).png" alt="" class="image_excel_1">
+//                         <img src="assets/orders_24dp_E8EAED_FILL0_wght300_GRAD-25_opsz24 1.png" alt="" class="image_excel">
+//                     </div>
+//                     <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
+//                     <div style="display: flex; justify-content: space-around; align-items: center;">
+//                         <div class="toggle-button" onclick="toggleButton(this)">
+//                             <div class="toggle-circle"></div>
+//                         </div>
+//                     </div>
+//                 </div>
+//             `;
+
+//             // Attach the toggleRows event to the image
+//             const toggleImage = newCell.querySelector('.image_excel_1');
+//             if (toggleImage) {
+//                 toggleImage.addEventListener('click', (event) => {
+//                     event.stopPropagation(); // Prevent the click from bubbling up
+//                     toggleRows(newCell); // Ensure toggleRows function is defined
+//                 });
+//             }
+//         } else if (i === 1) {
+//             newCell.innerHTML = `
+//                 <div class="button-counter">
+//                     <button class="decrement-btn">-</button>
+//                     <span class="count-value">0</span>
+//                     <button class="increment-btn">+</button>
+//                 </div>
+//             `;
+
+//             // Add event listeners for increment and decrement buttons
+//             const decrementBtn = newCell.querySelector('.decrement-btn');
+//             const incrementBtn = newCell.querySelector('.increment-btn');
+//             const countValue = newCell.querySelector('.count-value');
+
+//             decrementBtn.addEventListener('click', () => {
+//                 let count = parseInt(countValue.textContent);
+//                 if (count > 0) {
+//                     countValue.textContent = count - 1;
+//                 }
+//             });
+
+//             incrementBtn.addEventListener('click', () => {
+//                 let count = parseInt(countValue.textContent);
+//                 countValue.textContent = count + 1;
+//             });
+//         } else {
+//             newCell.innerHTML = `
+//                 <input type="text" placeholder="${placeholderText}" class="input-field cell-input-tag" />
+//             `;
+//         }
+
+//         const inputField = newCell.querySelector('input');
+//         if (inputField) {
+//             inputField.addEventListener('click', (event) => {
+//                 event.stopPropagation(); // Stop the click event from propagating to the parent cell
+//             });
+//         }
+
+//         newMainDataRow.appendChild(newCell);
+//         tableBody.appendChild(newMainDataRow);
+//     }
+
+//     tableBody.appendChild(newMainDataRow);
+
+//     // Reattach event listeners to newly added rows
+//     newMainDataRow.addEventListener('dragstart', drag);
+//     newMainDataRow.addEventListener('dragover', allowDrop);
+//     newMainDataRow.addEventListener('drop', drop);
+// }
 // Initially show 2 rows when the page loads
 document.addEventListener('DOMContentLoaded', () => {
     createMainDataRow();
@@ -228,11 +346,33 @@ function createNormalRow(cell) {
         showContextMenu(event, normalRow);
     });
 
-    for (let i = 0; i < 8; i++) {
+    // Create a new cell for the small button
+    const buttonCell = document.createElement('td');
+
+    // Create the small "+" button inside the first cell
+    const smallButton = document.createElement('button');
+    smallButton.textContent = '+';
+    smallButton.className = 'show-btn';
+    smallButton.onclick = (event) => {
+        event.stopPropagation();
+        createSubRows(buttonCell, 1); // This will create sub-row 1.1
+
+        // After creating sub-rows, toggle the icon to down
+        const iconElement = buttonCell.querySelector('i');
+        iconElement.classList.remove('bi-caret-right-fill');
+        iconElement.classList.add('bi-caret-down-fill');
+    };
+
+    // Append the small button to the button cell
+    buttonCell.appendChild(smallButton);
+    normalRow.appendChild(buttonCell); // Add the button cell to the normal row
+
+    // Create the rest of the cells
+    for (let i = 0; i < 7; i++) { // Adjusted to create 7 more cells
         const newCell = document.createElement('td');
         const inputField = document.createElement('input');
         inputField.type = 'text';
-        inputField.placeholder = `Enter text for cell ${i + 1}`;
+        inputField.placeholder = `Enter text for cell ${i + 2}`; // Adjust placeholder for new cells
         inputField.className = 'createrowinput'; // Set the class name for the input field
 
         if (i === 0) {
@@ -249,24 +389,9 @@ function createNormalRow(cell) {
                 event.stopPropagation();
             };
 
-            // Create a small "+" button inside the first cell
-            const smallButton = document.createElement('button');
-            smallButton.textContent = '+';
-            smallButton.className = 'show-btn';
-            smallButton.onclick = (event) => {
-                event.stopPropagation();
-                createSubRows(newCell, 1); // This will create sub-row 1.1
-
-                // After creating sub-rows, toggle the icon to down
-                const iconElement = cell.querySelector('i');
-                iconElement.classList.remove('bi-caret-right-fill');
-                iconElement.classList.add('bi-caret-down-fill');
-            };
-
             // Append the icon and input field to the container
             cellContent.appendChild(iconElement);
             cellContent.appendChild(inputField);
-            cellContent.appendChild(smallButton);
             newCell.appendChild(cellContent);
 
             // Make the first cell clickable to toggle sub-rows
@@ -376,6 +501,7 @@ function toggleAllDescendantRows(row) {
         nextRow = nextRow.nextElementSibling;
     }
 }
+
 function createSubRows(cell, level) {
     if (level >= maxLevel) return;
 
@@ -391,7 +517,23 @@ function createSubRows(cell, level) {
         showContextMenu(event, newRow);
     });
 
-    for (let i = 0; i < 8; i++) {
+    // Create a new cell for the small button
+    const buttonCell = document.createElement('td');
+
+    // Create and add the small button
+    const smallButton = document.createElement('button');
+    smallButton.textContent = '+';
+    smallButton.className = 'small-btnn';
+    smallButton.onclick = (event) => {
+        event.stopPropagation();
+        createSubRows(buttonCell, level + 1); // Create sub-rows at the next level
+    };
+
+    // Append the small button to the button cell
+    buttonCell.appendChild(smallButton);
+    newRow.appendChild(buttonCell); // Add the button cell to the new row
+
+    for (let i = 0; i < 7; i++) {
         const newCell = document.createElement('td');
         const inputField = document.createElement('input');
         inputField.type = 'text';
@@ -412,19 +554,9 @@ function createSubRows(cell, level) {
                 event.stopPropagation();
             };
 
-            // Create and add the small button
-            const smallButton = document.createElement('button');
-            smallButton.textContent = '+';
-            smallButton.className = 'small-btnn';
-            smallButton.onclick = (event) => {
-                event.stopPropagation();
-                createSubRows(newCell, level + 1);
-            };
-
-            // Append the icon, input field, and button to the container
+            // Append the icon and input field to the container
             cellContent.appendChild(iconElement);
             cellContent.appendChild(inputField);
-            cellContent.appendChild(smallButton);
             newCell.appendChild(cellContent);
 
             // Make the first cell clickable to toggle sub-rows

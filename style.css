@@ -133,10 +133,7 @@ body {
 
 }
 
-.button-container {
-    position: relative;
-    display: inline-block;
-}
+
 
 .test-company {
     border: 1px solid black;
@@ -1355,14 +1352,14 @@ td i.bi {
 }
 
 /* Hide the button by default */
-.cell-content .data-1-1_btn {
+/* .cell-content .data-1-1_btn {
     width: 0px;
     display: none;
     position: absolute;
     left: -21px;
     top: 50%;
     transform: translateY(-50%);
-}
+} */
 
 /* Hide the button by default */
 .cell-content .small-btnn {
@@ -1415,9 +1412,9 @@ td i.bi {
     /* Create a positioning context for the button */
 }
 
-.data1-1:hover .data-1-1_btn {
+/* .data1-1:hover .data-1-1_btn {
     display: block;
-}
+} */
 
 .add_the_main_row {
     background: transparent;

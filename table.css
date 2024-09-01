@@ -69,7 +69,6 @@ button {
 /* button:hover {
     background-color: #45a049;
 } */
-
 .normal-row td:first-child,
 .sub-row td:first-child {
     padding-left: 30px;
@@ -81,8 +80,9 @@ button {
     border-left: 1px solid #dddddd00;
 }
 
-.sub-row.level-1 td:first-child {
-    padding-left: 60px;
+
+.sub-row.level-1 td:nth-child(2) { /* Corrected selector */
+    padding-left: 60px; /* Apply padding to the second child */
     padding-top: 0px;
     padding-bottom: 0px;
     border-top: 1px solid #ddd;
@@ -91,7 +91,7 @@ button {
     border-left: 1px solid #dddddd00;
 }
 
-.sub-row.level-2 td:first-child {
+.sub-row.level-2 td:nth-child(2) {
     padding-left: 90px;
     padding-top: 0px;
     padding-bottom: 0px;
@@ -594,4 +594,17 @@ button.decrement-btn {
 
 .context-menu li:hover {
     background-color: #f0f0f0;
+}.button-cell {
+    position: relative; /* Positioning context for absolute elements */
 }
+
+.data-1-1_btn {
+    position: absolute; /* Position the button absolutely within the cell */
+    left: 10px; /* Adjust as needed */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Adjust for perfect centering */
+}
+.sub-row td {
+    padding: 8px; /* Default padding for sub-row cells */
+}
+
