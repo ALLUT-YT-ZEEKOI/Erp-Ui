@@ -30,6 +30,11 @@
 
 
     <div class="main-conatiner">
+
+       
+
+       
+
         <div style="position: sticky;top: 0;z-index: 1000;">
             <div class="main-header">
                 <div class="main-header-leftside" style="display: flex;width:60%;">
@@ -139,7 +144,7 @@
 
 
                     <!-- showing details -->
-                    <div id="address-details-dt" class="address-details-dt">
+                    <div id="address-details-dt" class="address-details-dt" style="margin-top: 5px;">
 
 
 
@@ -231,7 +236,7 @@
                                 Sale Date
 
                                 <div class="datepicker_0"
-                                    style="position: relative;border: 1px solid black;padding: 0px; width: 95%;">
+                                    style="position: relative;border: 1px solid rgba(105, 102, 102, 0.5);padding: 0px; width: 95%;">
                                     <input type="text" name="" id="date_0" class="ctm-input" placeholder="choose date">
                                 </div>
                             </div>
@@ -241,7 +246,7 @@
 
 
                                 <div class="datepickerr"
-                                    style="position: relative;border: 1px solid black;padding: 0px;width: 95%;">
+                                    style="position: relative;border: 1px solid rgba(105, 102, 102, 0.5);padding: 0px;width: 95%;">
 
                                     <input type="text" name="" id="datee" class="ctm-input" placeholder="choose date">
 
@@ -255,7 +260,7 @@
                             <div class="subtext_1">
                                 Extended Delivery Date
                                 <div class="datepickerrr"
-                                    style="position: relative;border: 1px solid black;padding: 0px;width: 95%;">
+                                    style="position: relative;border: 1px solid rgba(105, 102, 102, 0.5);padding: 0px;width: 95%;">
                                     <input type="text" name="" id="dateee" class="ctm-input" placeholder="choose date">
                                 </div>
                             </div>
@@ -350,7 +355,7 @@
                     <fieldset style="margin-right: 10px;">
 
                         <div>
-                            <input type="checkbox" id="coding" name="interest" value="coding" />
+                            <input type="checkbox" id="addColumnButton" name="interest" value="coding" />
 
                             <label for="coding" class="dis">Show Description</label>
                         </div>
@@ -369,7 +374,7 @@
 
             <!-- exal main container -->
 
-
+           
 
 
             <div style="    width: 100%;
@@ -383,9 +388,6 @@
 
                         <!-- Table tr  -->
 
-                        <div class="malar">
-
-                        </div>
 
                         <div style="    display: flex;
                         justify-content: center;
@@ -405,6 +407,7 @@
                                             </span>
                                             <div class="resizer"></div>
                                         </th>
+                                        
                                             <th style="width: 300px;border-left: none;"> <span class="table-head">Product
 
                                                 </span>
@@ -459,9 +462,9 @@
                                 </table>
                                 <!-- ................................data rows ....................................................................-->
 
-                                <button " style=" margin-left: 0px;" class="search-container_in">
+                                <div class="search-container_in">
                                     <button class="add_the_main_row" onclick="createMainDataRow()">+ Add</button>
-                                </button>
+                                </div>
                             </div>
 
 
@@ -691,19 +694,17 @@
         </div>
 
         <div style="height: 50px;"></div>
-        <div class="bottom-div">
-            <div style="display: flex;justify-content: space-between;align-items: center;">
-                <div style="display: flex;">
-                    <div class="tootal">
-                        Total </div>
-                    <div class="tootal" style="padding-left: 10px;">
-                        ₹300</div>
+        <div style="position: sticky;bottom: 0;z-index: 1000;">
+            <div class="main-header">
+                <div class="main-header-leftside" style="display: flex;width:60%;">
+                    <div class="add-sale">tootal</div>
+                  
+                    <div class="add-sale"> ₹300</div>
                 </div>
-
                 <div class="main-header-rightside" style="display: flex;
-                   
-                    width: 40%;
-                    align-items: end;">
+            justify-content: end;
+            width: 40%;
+            align-items: end;">
                     <button class="saveas-btn">
                         <div class="saveas-btn-text" style="width: 90px;color: rgb(0, 0, 0);">Save as Draft</div>
                     </button>
@@ -713,19 +714,18 @@
                     <button class="saveas-btn" style="background: #008D4C;color: rgb(255, 255, 255);width: 80px;">
                         <div class="saveas-btn-text">Save</div>
                     </button>
-
                 </div>
+
             </div>
         </div>
-
-
+   
     </div>
-
+<!-- 
     <div class="context-menu" id="contextMenu">
         <ul>
-            <li onclick="freezeColumn()">Freeze Column</li>
+            <li id="freezeUnfreezeMenuItem" onclick="freezeColumn()">Freeze Column</li>
         </ul>
-    </div>
+    </div> -->
     <div id="contextMenu_1" class="context-menu" style="display: none;">
         <ul>
             <li id="deleteRow">Delete Row</li>
@@ -761,77 +761,7 @@
 
         })
     </script>
-    <script>
-        const MIN_WIDTH = 200; // Minimum width for the columns
-
-        document.querySelectorAll('.resizer').forEach(resizer => {
-            resizer.addEventListener('mousedown', function (e) {
-                e.preventDefault();
-                document.addEventListener('mousemove', onMouseMove);
-                document.addEventListener('mouseup', onMouseUp);
-
-                const th = resizer.parentElement;
-                const startOffset = th.offsetWidth - e.pageX;
-
-                function onMouseMove(e) {
-                    const newWidth = startOffset + e.pageX;
-                    // Set the column width, ensuring it does not go below MIN_WIDTH
-                    th.style.width = Math.max(newWidth, MIN_WIDTH) + 'px';
-                }
-
-                function onMouseUp() {
-                    document.removeEventListener('mousemove', onMouseMove);
-                    document.removeEventListener('mouseup', onMouseUp);
-                }
-            });
-        });
-
-        document.addEventListener('DOMContentLoaded', () => {
-    const secondTh = document.querySelector('#myTable th:nth-child(2)');
-    const contextMenu = document.getElementById('contextMenu');
-
-    // Show context menu on right-click
-    secondTh.addEventListener('contextmenu', (event) => {
-        event.preventDefault(); // Prevent the default context menu
-        contextMenu.style.display = 'block';
-        contextMenu.style.left = `${event.pageX}px`;
-        contextMenu.style.top = `${event.pageY}px`;
-    });
-
-    // Hide context menu when clicking outside
-    document.addEventListener('click', () => {
-        contextMenu.style.display = 'none';
-    });
-});
-
-function freezeColumn() {
-    const contextMenu = document.getElementById('contextMenu');
-    const table = document.getElementById('myTable');
-
-    // Specify the number of columns to freeze (2 in this case)
-    const columnsToFreeze = 2;
-
-    // Freeze the specified columns
-    for (let i = 0; i < columnsToFreeze; i++) {
-        const th = table.getElementsByTagName('th')[i];
-        th.classList.add('frozen');
-        th.style.position = 'sticky';
-        th.style.left = `${i * 200}px`; // Adjust left position based on column width
-        th.style.zIndex = '10';
-
-        // Apply sticky position to all td elements in the column
-        Array.from(table.querySelectorAll(`tr td:nth-child(${i + 1})`)).forEach(td => {
-            td.classList.add('frozen');
-            td.style.position = 'sticky';
-            td.style.left = `${i * 200}px`; // Adjust left position based on column width
-            td.style.zIndex = '1';
-        });
-    }
-
-    // Hide the context menu after selection
-    contextMenu.style.display = 'none';
-}
-    </script>
+    
     <style>
       
 

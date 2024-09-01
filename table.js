@@ -273,7 +273,7 @@ function createNormalRow(cell) {
     normalRow.appendChild(buttonCell); // Add the button cell to the normal row
 
     // Create the rest of the cells
-    for (let i = 0; i < 7; i++) { // Adjusted to create 7 more cells
+    for (let i = 0; i < 8; i++) { // Adjusted to create 7 more cells
         const newCell = document.createElement('td');
         const inputField = document.createElement('input');
         inputField.type = 'text';
@@ -438,7 +438,7 @@ function createSubRows(cell, level) {
     buttonCell.appendChild(smallButton);
     newRow.appendChild(buttonCell); // Add the button cell to the new row
 
-    for (let i = 0; i < 7; i++) {
+    for (let i = 0; i < 8; i++) {
         const newCell = document.createElement('td');
         const inputField = document.createElement('input');
         inputField.type = 'text';

@@ -128,3 +128,124 @@ function show_address_details() {
         }, 10); 
     }
 }
+
+document.getElementById("addColumnButton").addEventListener("click", function() {
+    // Get the table header and body
+    var table = document.getElementById("myTable");
+    var headerRow = table.querySelector("thead tr");
+    var bodyRows = table.querySelectorAll("tbody tr");
+
+    // Create a new header cell
+    var newHeaderCell = document.createElement("th");
+    newHeaderCell.style.width = "180px"; // Set width as needed
+    newHeaderCell.innerHTML = "<span class='table-head'>New Column</span><div class='resizer'></div>";
+    headerRow.appendChild(newHeaderCell);
+
+    // Add a new cell to each row in the body
+    bodyRows.forEach(function(row) {
+        var newBodyCell = document.createElement("td");
+        newBodyCell.innerHTML = "New Data"; // Default content for new cells
+        row.appendChild(newBodyCell);
+    });
+});
+
+
+
+const MIN_WIDTH = 200; // Minimum width for the columns
+
+document.querySelectorAll('.resizer').forEach(resizer => {
+    resizer.addEventListener('mousedown', function (e) {
+        e.preventDefault();
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+
+        const th = resizer.parentElement;
+        const startOffset = th.offsetWidth - e.pageX;
+
+        function onMouseMove(e) {
+            const newWidth = startOffset + e.pageX;
+            // Set the column width, ensuring it does not go below MIN_WIDTH
+            th.style.width = Math.max(newWidth, MIN_WIDTH) + 'px';
+        }
+
+        function onMouseUp() {
+            document.removeEventListener('mousemove', onMouseMove);
+            document.removeEventListener('mouseup', onMouseUp);
+        }
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+const secondTh = document.querySelector('#myTable th:nth-child(2)');
+const contextMenu = document.getElementById('contextMenu');
+
+// Show context menu on right-click
+secondTh.addEventListener('contextmenu', (event) => {
+event.preventDefault(); // Prevent the default context menu
+contextMenu.style.display = 'block';
+contextMenu.style.left = `${event.pageX}px`;
+contextMenu.style.top = `${event.pageY}px`;
+});
+
+// Hide context menu when clicking outside
+document.addEventListener('click', () => {
+contextMenu.style.display = 'none';
+});
+});
+
+// let isFrozen = false; 
+
+// function freezeColumn() {
+//     const contextMenu = document.getElementById('contextMenu');
+//     const table = document.getElementById('myTable');
+//     const menuItem = document.getElementById('freezeUnfreezeMenuItem');
+
+//     // Specify the number of columns to freeze (2 in this case)
+//     const columnsToFreeze = 2;
+
+//     // Freeze or unfreeze the specified columns
+//     for (let i = 0; i < columnsToFreeze; i++) {
+//         const th = table.getElementsByTagName('th')[i];
+//         const isColumnFrozen = th.classList.contains('frozen');
+
+//         if (isFrozen && isColumnFrozen) {
+//             // Unfreeze the column
+//             th.classList.remove('frozen');
+//             th.style.position = '';
+//             th.style.left = '';
+//             th.style.zIndex = '';
+
+//             // Remove sticky position from all td elements in the column
+//             Array.from(table.querySelectorAll(`tr td:nth-child(${i + 1})`)).forEach(td => {
+//                 td.classList.remove('frozen');
+//                 td.style.position = '';
+//                 td.style.left = '';
+//                 td.style.zIndex = '';
+//             });
+//         } else {
+//             // Freeze the column
+//             th.classList.add('frozen');
+//             th.style.position = 'sticky';
+//             th.style.left = `${i * 70}px`; // Adjust left position based on column width
+//             th.style.zIndex = '10';
+
+//             // Apply sticky position to all td elements in the column
+//             Array.from(table.querySelectorAll(`tr td:nth-child(${i + 1})`)).forEach(td => {
+//                 td.classList.add('frozen');
+//                 td.style.position = 'sticky';
+//                 td.style.left = `${i * 70}px`; // Adjust left position based on column width
+//                 td.style.zIndex = '1';
+//             });
+//         }
+//     }
+
+
+
+//     isFrozen = !isFrozen;
+
+
+//     menuItem.textContent = isFrozen ? 'Unfreeze Column' : 'Freeze Column';
+
+
+//     contextMenu.style.display = 'none';
+// }

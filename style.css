@@ -149,8 +149,8 @@ body {
 .dialog-box {
     display: none;
     position: absolute;
-    bottom: -23px;
-    left: 133px;
+    bottom: 308px;
+    left: 413px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     padding: 10px;
@@ -454,6 +454,8 @@ textarea {
 
 .ctm-input {
     width: 100%;
+   outline: none;
+    border: none;
 }
 
 
@@ -1304,13 +1306,19 @@ td {
 
 
 
-/* scroll bar container */
 .scrollable-container {
-
     width: 100%;
-    overflow-y: auto;
-
-}
+    overflow-x: auto; /* Add this line to enable horizontal scrolling */
+    overflow-y: hidden; /* Add this line to hide vertical scrollbar */
+    position: relative; /* Add this line to establish a positioning context for the button */
+  }
+  
+  .search-container_in {
+    position: sticky;
+    left: 0;
+    right: 0; /* Adjust this value to position the button horizontally */
+    z-index: 1; /* Ensure the button is on top of the scrollable content */
+  }
 
 
 /* Custom Scrollbar */
@@ -1430,10 +1438,7 @@ td i.bi {
     background: #e3dfd852;
 }
 
-.malar {
-    background-color: rgb(17, 187, 122);
-    width: 100%;
-}
+
 
 .image_excel_1 {
     width: 7px;
