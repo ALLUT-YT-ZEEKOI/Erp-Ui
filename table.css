@@ -503,7 +503,7 @@ input.input-field.cell-input-tag:focus {
     position: absolute;
     background-color: #f1f1f1;
     border: 1px solid #ccc;
-    padding: 10px;
+
     z-index: 1;
 }
 
@@ -514,7 +514,7 @@ input.input-field.cell-input-tag:focus {
 }
 
 .context-menu li {
-    padding: 5px 0;
+
     cursor: pointer;
 }
 
@@ -573,8 +573,7 @@ button.decrement-btn {
 
 .context-menu {
     position: absolute;
-    background-color: white;
-    border: 1px solid #ccc;
+   
     z-index: 1000;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
@@ -631,3 +630,12 @@ button.decrement-btn {
     display: flex;
     justify-content: space-between;
 }
+
+li#deleteRow {
+    background: black;
+    color: white;
+    font-size: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
